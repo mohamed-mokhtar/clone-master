@@ -1,0 +1,82 @@
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Menu, X, MessageCircle } from 'lucide-react';
+
+export const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <header className="w-full bg-card/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            Finmart
+          </div>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <a href="#services" className="text-foreground hover:text-primary transition-colors">
+            Services
+          </a>
+          <a href="#calculators" className="text-foreground hover:text-primary transition-colors">
+            Calculators
+          </a>
+          <a href="#about" className="text-foreground hover:text-primary transition-colors">
+            About Us
+          </a>
+          <a href="#blog" className="text-foreground hover:text-primary transition-colors">
+            Blog
+          </a>
+        </nav>
+
+        {/* Right Side Actions */}
+        <div className="flex items-center space-x-3">
+          <Button variant="outline" size="sm" className="hidden sm:flex items-center space-x-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground">
+            <MessageCircle className="w-4 h-4" />
+            <span>WhatsApp</span>
+          </Button>
+          
+          <Button variant="default" size="sm" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+            Sign up
+          </Button>
+
+          {/* Mobile Menu Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </Button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t border-border/50 bg-card/95 backdrop-blur-sm">
+          <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <a href="#services" className="text-foreground hover:text-primary transition-colors">
+              Services
+            </a>
+            <a href="#calculators" className="text-foreground hover:text-primary transition-colors">
+              Calculators
+            </a>
+            <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              About Us
+            </a>
+            <a href="#blog" className="text-foreground hover:text-primary transition-colors">
+              Blog
+            </a>
+            <Button variant="outline" size="sm" className="w-fit flex items-center space-x-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground">
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp Support</span>
+            </Button>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
