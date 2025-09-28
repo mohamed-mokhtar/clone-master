@@ -1,42 +1,53 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calculator, Home, Car, PiggyBank, CreditCard, DollarSign } from 'lucide-react';
+import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import calculatorIcon from '@/assets/calculator-icon.png';
 
-const calculators = [
-  {
-    icon: Calculator,
-    title: "Eligibility Calculator",
-    description: "Check your loan eligibility instantly"
-  },
-  {
-    icon: Car,
-    title: "Car Loan Calculator", 
-    description: "Calculate your car loan EMI"
-  },
-  {
-    icon: DollarSign,
-    title: "DBR Calculator",
-    description: "Debt-to-income ratio calculator"
-  },
-  {
-    icon: Home,
-    title: "Home Loan Calculator",
-    description: "Plan your dream home purchase"
-  },
-  {
-    icon: CreditCard,
-    title: "EMI Calculator",
-    description: "Calculate monthly installments"
-  },
-  {
-    icon: PiggyBank,
-    title: "Interest Calculator", 
-    description: "Compare interest rates"
-  }
-];
-
 export const CalculatorsSection = () => {
+  const { t } = useLanguage();
+  const [salary, setSalary] = useState(5000);
+  const [employmentType, setEmploymentType] = useState('salaried');
+
+  const calculators = [
+    {
+      icon: Calculator,
+      title: t('calculators.eligibility.title'),
+      description: t('calculators.eligibility.description')
+    },
+    {
+      icon: Car,
+      title: t('calculators.carLoan.title'), 
+      description: t('calculators.carLoan.description')
+    },
+    {
+      icon: DollarSign,
+      title: t('calculators.dbr.title'),
+      description: t('calculators.dbr.description')
+    },
+    {
+      icon: Home,
+      title: t('calculators.homeLoan.title'),
+      description: t('calculators.homeLoan.description')
+    },
+    {
+      icon: CreditCard,
+      title: t('calculators.emi.title'),
+      description: t('calculators.emi.description')
+    },
+    {
+      icon: PiggyBank,
+      title: t('calculators.interest.title'), 
+      description: t('calculators.interest.description')
+    }
+  ];
+
+  const calculateEligibility = () => {
+    // Simple eligibility calculation
+    const eligibleAmount = salary * 60; // 60x salary as rough estimate
+    alert(`Your estimated loan eligibility: AED ${eligibleAmount.toLocaleString()}`);
+  };
   return (
     <section id="calculators" className="py-16 bg-background">
       <div className="container mx-auto px-4">
@@ -44,11 +55,11 @@ export const CalculatorsSection = () => {
           <div className="flex items-center justify-center space-x-3 mb-4">
             <img src={calculatorIcon} alt="Calculator" className="w-12 h-12" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Financial Calculators
+              {t('calculators.title')}
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Use our advanced calculators to make informed financial decisions
+            {t('calculators.subtitle')}
           </p>
         </div>
 
@@ -78,7 +89,7 @@ export const CalculatorsSection = () => {
                     size="sm"
                     className="w-full border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
-                    Try Now
+                    {t('calculators.tryNow')}
                   </Button>
                 </div>
               </Card>
@@ -92,35 +103,45 @@ export const CalculatorsSection = () => {
             <div className="space-y-6">
               <div className="space-y-3">
                 <h3 className="text-2xl font-bold text-foreground">
-                  Eligibility Calculator
+                  {t('calculators.featured.title')}
                 </h3>
                 <p className="text-muted-foreground">
-                  Get an instant assessment of your loan eligibility based on your profile
+                  {t('calculators.featured.description')}
                 </p>
               </div>
 
               <div className="space-y-4">
                 <div className="flex space-x-4">
                   <Button 
-                    variant="default" 
+                    variant={employmentType === 'salaried' ? "default" : "outline"}
                     className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                    onClick={() => setEmploymentType('salaried')}
                   >
-                    Salaried
+                    {t('calculators.featured.salaried')}
                   </Button>
                   <Button 
-                    variant="outline"
+                    variant={employmentType === 'business' ? "default" : "outline"}
                     className="border-primary/20 hover:bg-primary hover:text-primary-foreground"
+                    onClick={() => setEmploymentType('business')}
                   >
-                    Business
+                    {t('calculators.featured.business')}
                   </Button>
                 </div>
                 
                 <div className="bg-primary/5 rounded-xl p-4 border border-primary/10">
-                  <p className="text-sm text-muted-foreground mb-2">Monthly Salary in AED</p>
+                  <p className="text-sm text-muted-foreground mb-2">{t('calculators.featured.monthlySalary')}</p>
                   <div className="flex items-center space-x-3">
-                    <span className="text-2xl font-bold text-primary">AED 5K</span>
-                    <div className="flex-1 h-2 bg-muted rounded-full">
-                      <div className="h-2 bg-gradient-primary rounded-full w-1/4"></div>
+                    <span className="text-2xl font-bold text-primary">AED {salary.toLocaleString()}</span>
+                    <div className="flex-1">
+                      <input 
+                        type="range" 
+                        min="5000" 
+                        max="100000" 
+                        step="1000"
+                        value={salary}
+                        onChange={(e) => setSalary(Number(e.target.value))}
+                        className="w-full h-2 bg-muted rounded-full appearance-none cursor-pointer"
+                      />
                     </div>
                     <span className="text-sm text-muted-foreground">100K</span>
                   </div>
@@ -129,13 +150,14 @@ export const CalculatorsSection = () => {
                 <Button 
                   size="lg" 
                   className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                  onClick={calculateEligibility}
                 >
-                  Check Eligibility
+                  {t('calculators.featured.checkEligibility')}
                 </Button>
                 
                 <p className="text-xs text-muted-foreground flex items-start space-x-2">
                   <span className="text-orange-500">⚠️</span>
-                  <span>This calculator is only viable and subject to Finmart's financial assessment.</span>
+                  <span>{t('calculators.featured.disclaimer')}</span>
                 </p>
               </div>
             </div>

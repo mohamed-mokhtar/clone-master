@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const bankLogos = [
   { name: "Emirates NBD", color: "#00B04F" },
@@ -10,16 +11,17 @@ const bankLogos = [
 ];
 
 export const BankingPartners = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Banking Partners
+              {t('partners.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Trusted by UAE's leading financial institutions
+              {t('partners.subtitle')}
             </p>
           </div>
 

@@ -1,0 +1,183 @@
+{
+  "app": {
+    "name": "Finmart",
+    "tagline": "Your trusted financial partner in the UAE"
+  },
+  "header": {
+    "services": "Services",
+    "calculators": "Calculators", 
+    "aboutUs": "About Us",
+    "blog": "Blog",
+    "whatsapp": "WhatsApp",
+    "whatsappSupport": "WhatsApp Support",
+    "signup": "Sign up",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Smart Banking Solutions for Your Financial Future",
+    "subtitle": "Get the best banking offers in the UAE with our comprehensive financial services and innovative financing solutions",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "services": {
+      "creditCards": {
+        "title": "Credit Cards",
+        "description": "Best offers and benefits"
+      },
+      "personalLoans": {
+        "title": "Personal Loans",
+        "description": "Flexible and suitable financing solutions"
+      },
+      "autoLoans": {
+        "title": "Auto Loans",
+        "description": "Finance your dream car"
+      },
+      "mortgages": {
+        "title": "Mortgages",
+        "description": "Buy your dream home"
+      }
+    }
+  },
+  "finbuddy": {
+    "title": "FinBuddy - Your Smart Financial Assistant",
+    "subtitle": "Get instant and personalized financial advice using artificial intelligence",
+    "features": {
+      "instant": "Instant Answers",
+      "personalized": "Personalized Advice",
+      "available": "Available 24/7"
+    },
+    "tryNow": "Try Now",
+    "chatPlaceholder": "Ask FinBuddy any financial question...",
+    "send": "Send"
+  },
+  "calculators": {
+    "title": "Financial Calculators",
+    "subtitle": "Use our advanced calculators to make informed financial decisions",
+    "eligibility": {
+      "title": "Eligibility Calculator",
+      "description": "Check your loan eligibility instantly"
+    },
+    "carLoan": {
+      "title": "Car Loan Calculator",
+      "description": "Calculate your car loan EMI"
+    },
+    "dbr": {
+      "title": "DBR Calculator", 
+      "description": "Debt-to-income ratio calculator"
+    },
+    "homeLoan": {
+      "title": "Home Loan Calculator",
+      "description": "Plan your dream home purchase"
+    },
+    "emi": {
+      "title": "EMI Calculator",
+      "description": "Calculate monthly installments"
+    },
+    "interest": {
+      "title": "Interest Calculator",
+      "description": "Compare interest rates"
+    },
+    "tryNow": "Try Now",
+    "featured": {
+      "title": "Eligibility Calculator",
+      "description": "Get an instant assessment of your loan eligibility based on your profile",
+      "salaried": "Salaried",
+      "business": "Business",
+      "monthlySalary": "Monthly Salary in AED",
+      "checkEligibility": "Check Eligibility",
+      "disclaimer": "This calculator is only viable and subject to Finmart's financial assessment"
+    }
+  },
+  "trust": {
+    "title": "Why Choose Finmart?",
+    "subtitle": "We are committed to providing the best financial services and innovative banking solutions",
+    "features": {
+      "expert": {
+        "title": "Expert Knowledge",
+        "description": "Team of certified financial experts"
+      },
+      "secure": {
+        "title": "Security & Trust",
+        "description": "Secure transactions protected by highest standards"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Support team available 24/7 to help you"
+      },
+      "rates": {
+        "title": "Best Rates",
+        "description": "Competitive interest rates and suitable fees"
+      }
+    }
+  },
+  "partners": {
+    "title": "Our Banking Partners",
+    "subtitle": "We work with the best banks and financial institutions in the UAE"
+  },
+  "blog": {
+    "title": "Latest Financial News & Tips",
+    "subtitle": "Check out the latest articles and financial tips from our experts",
+    "readMore": "Read More",
+    "articles": {
+      "creditScore": {
+        "title": "How to Improve Your Credit Score",
+        "excerpt": "Practical tips to improve your credit rating in the UAE"
+      },
+      "firstHome": {
+        "title": "First-Time Home Buyer's Guide",
+        "excerpt": "Everything you need to know about buying your first home"
+      },
+      "investment": {
+        "title": "Smart Investment Strategies",
+        "excerpt": "Diverse investment plans suitable for all ages"
+      }
+    }
+  },
+  "footer": {
+    "company": {
+      "title": "Finmart",
+      "description": "Your trusted financial partner in the UAE. Connecting you with the best banking solutions tailored to your needs"
+    },
+    "services": {
+      "title": "Services",
+      "creditCards": "Credit Cards",
+      "personalLoans": "Personal Loans",
+      "autoLoans": "Auto Loans",
+      "mortgages": "Mortgages",
+      "accounts": "Current & Savings Accounts",
+      "business": "Business Banking"
+    },
+    "calculators": {
+      "title": "Calculators",
+      "eligibility": "Eligibility Calculator",
+      "emi": "EMI Calculator",
+      "carLoan": "Car Loan Calculator",
+      "homeLoan": "Home Loan Calculator",
+      "dbr": "DBR Calculator",
+      "interest": "Interest Calculator"
+    },
+    "support": {
+      "title": "Support",
+      "whatsapp": "WhatsApp Support",
+      "helpCenter": "Help Center",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "about": "About Us"
+    },
+    "legal": {
+      "copyright": "© 2024 Finmart. All rights reserved. Licensed and regulated in the UAE",
+      "regulated": "Central Bank of UAE",
+      "dfsa": "DFSA Regulated"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try again",
+    "close": "Close",
+    "save": "Save", 
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit"
+  }
+}

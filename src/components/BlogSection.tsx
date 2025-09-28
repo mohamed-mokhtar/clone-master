@@ -1,45 +1,47 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
-
-const blogPosts = [
-  {
-    title: "Checklist for Assessing Your Eligibility for a Personal Loan",
-    date: "2024-12-03",
-    readTime: "5 min read",
-    category: "Personal Finance",
-    excerpt: "Essential factors banks consider when evaluating your personal loan application in the UAE.",
-    gradient: "from-blue-500 to-purple-600"
-  },
-  {
-    title: "Managing Personal Loan Repayments for a Stress-Free Experience", 
-    date: "2024-12-03",
-    readTime: "7 min read",
-    category: "Loan Management",
-    excerpt: "Smart strategies to manage your loan EMIs and avoid financial stress.",
-    gradient: "from-purple-500 to-pink-600"
-  },
-  {
-    title: "Maximizing Rewards: How to Make the Most of Your Credit Card Benefits",
-    date: "2024-11-27", 
-    readTime: "6 min read",
-    category: "Credit Cards",
-    excerpt: "Unlock the full potential of your credit cards with these expert tips.",
-    gradient: "from-teal-500 to-blue-600"
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const BlogSection = () => {
+  const { t } = useLanguage();
+  
+  const blogPosts = [
+    {
+      titleKey: "blog.articles.creditScore.title",
+      excerptKey: "blog.articles.creditScore.excerpt",
+      date: "2024-12-03",
+      readTime: "5 min read",
+      category: "Personal Finance",
+      gradient: "from-blue-500 to-purple-600"
+    },
+    {
+      titleKey: "blog.articles.firstHome.title",
+      excerptKey: "blog.articles.firstHome.excerpt",
+      date: "2024-12-03", 
+      readTime: "7 min read",
+      category: "Loan Management",
+      gradient: "from-purple-500 to-pink-600"
+    },
+    {
+      titleKey: "blog.articles.investment.title",
+      excerptKey: "blog.articles.investment.excerpt",
+      date: "2024-11-27",
+      readTime: "6 min read", 
+      category: "Credit Cards",
+      gradient: "from-teal-500 to-blue-600"
+    }
+  ];
   return (
     <section id="blog" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              From our experts
+              {t('blog.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Stay informed with the latest insights from our financial experts
+              {t('blog.subtitle')}
             </p>
           </div>
 
@@ -80,10 +82,10 @@ export const BlogSection = () => {
 
                   <div className="space-y-3">
                     <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
-                      {post.title}
+                      {t(post.titleKey)}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      {post.excerpt}
+                      {t(post.excerptKey)}
                     </p>
                   </div>
 
@@ -92,7 +94,7 @@ export const BlogSection = () => {
                     size="sm"
                     className="group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 p-0 h-auto font-semibold"
                   >
-                    Read More
+                    {t('blog.readMore')}
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
                 </div>

@@ -1,0 +1,27 @@
+{
+  "defaultLanguage": "ar",
+  "supportedLanguages": ["ar", "en"],
+  "app": {
+    "name": "Finmart",
+    "version": "1.0.0",
+    "rtlLanguages": ["ar"],
+    "features": {
+      "calculators": true,
+      "finbuddy": true,
+      "blog": true,
+      "whatsappSupport": true
+    }
+  },
+  "contact": {
+    "phone": "+971 4 123 4567",
+    "email": "info@finmart.ae",
+    "whatsapp": "+971 50 123 4567",
+    "address": "Dubai, United Arab Emirates"
+  },
+  "social": {
+    "facebook": "#",
+    "twitter": "#", 
+    "instagram": "#",
+    "linkedin": "#"
+  }
+}

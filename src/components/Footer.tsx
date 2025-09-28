@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { MessageCircle, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const Footer = () => {
+  const { t } = useLanguage();
   return (
     <footer className="bg-gradient-accent text-white">
       <div className="container mx-auto px-4 py-16">
@@ -9,9 +11,9 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold">Finmart</h3>
+              <h3 className="text-2xl font-bold">{t('footer.company.title')}</h3>
               <p className="text-white/80 text-sm leading-relaxed">
-                Your trusted financial partner in the UAE. Connecting you with the best banking solutions tailored to your needs.
+                {t('footer.company.description')}
               </p>
             </div>
             
@@ -33,14 +35,14 @@ export const Footer = () => {
 
           {/* Services */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold">Services</h4>
+            <h4 className="text-lg font-semibold">{t('footer.services.title')}</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Credit Cards</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Personal Loans</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Auto Loans</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Mortgages</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Current & Savings Accounts</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Business Banking</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.creditCards')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.personalLoans')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.autoLoans')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.mortgages')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.accounts')}</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.business')}</a></li>
             </ul>
           </div>
 
@@ -66,7 +68,7 @@ export const Footer = () => {
                 className="w-full bg-green-500 hover:bg-green-600 transition-all duration-300"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
-                WhatsApp Support
+                {t('footer.support.whatsapp')}
               </Button>
               
               <ul className="space-y-3 text-sm">
@@ -97,9 +99,9 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-white/60 text-sm">
-              © 2024 Finmart. All rights reserved. Licensed and regulated in the UAE.
-            </p>
+              <p className="text-white/60 text-sm">
+                {t('footer.legal.copyright')}
+              </p>
             <div className="flex items-center space-x-6 text-sm">
               <a href="#" className="text-white/60 hover:text-white transition-colors">
                 DFSA Regulated

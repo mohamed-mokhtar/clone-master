@@ -1,51 +1,55 @@
 import { Card } from '@/components/ui/card';
 import { Award, Shield, Users, TrendingUp } from 'lucide-react';
-
-const trustFeatures = [
-  {
-    icon: Award,
-    title: "Banking Excellence Recognized",
-    subtitle: "Measures",
-    description: "Awarded by the UAE's top banks, our trophy shelf tells the story of excellence, trust, and unmatched service."
-  },
-  {
-    icon: Users,
-    title: "Network of 300+ Lenders", 
-    subtitle: "Reductions",
-    description: "Our network of over 300 lenders will be matched with you, and up to five of them will contact you to compete for your business."
-  },
-  {
-    icon: Shield,
-    title: "Provide Assistance",
-    subtitle: "Assistance", 
-    description: "With our free credit monitoring, insightful budgeting advice, and tailored recommendations, we offer continuous support."
-  }
-];
-
-const statistics = [
-  {
-    icon: Users,
-    number: "100k+",
-    label: "Happy Customers"
-  },
-  {
-    icon: Award,
-    number: "300k+", 
-    label: "Credit Cards Issued"
-  },
-  {
-    icon: TrendingUp,
-    number: "10 Billion",
-    label: "Loan Disbursed"
-  },
-  {
-    icon: Shield,
-    number: "10+",
-    label: "Partner Banks"
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export const TrustSection = () => {
+  const { t } = useLanguage();
+  
+  const trustFeatures = [
+    {
+      icon: Award,
+      title: t('trust.features.expert.title'),
+      description: t('trust.features.expert.description')
+    },
+    {
+      icon: Shield,
+      title: t('trust.features.secure.title'), 
+      description: t('trust.features.secure.description')
+    },
+    {
+      icon: Users,
+      title: t('trust.features.support.title'),
+      description: t('trust.features.support.description')
+    },
+    {
+      icon: TrendingUp,
+      title: t('trust.features.rates.title'),
+      description: t('trust.features.rates.description')
+    }
+  ];
+
+  const statistics = [
+    {
+      icon: Users,
+      number: "100k+",
+      label: "Happy Customers"
+    },
+    {
+      icon: Award,
+      number: "300k+", 
+      label: "Credit Cards Issued"
+    },
+    {
+      icon: TrendingUp,
+      number: "10 Billion",
+      label: "Loan Disbursed"
+    },
+    {
+      icon: Shield,
+      number: "10+",
+      label: "Partner Banks"
+    }
+  ];
   return (
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -53,31 +57,28 @@ export const TrustSection = () => {
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Why do our clients trust us?
+              {t('trust.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Don't settle for anything. Choose the right one.
+              {t('trust.subtitle')}
             </p>
           </div>
 
           {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {trustFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <Card
                   key={index}
-                  className="p-8 text-center bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group"
+                  className="p-6 text-center bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group"
                 >
                   <div className="space-y-4">
-                    <div className="mx-auto p-4 bg-gradient-primary rounded-3xl w-fit group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-10 h-10 text-primary-foreground" />
+                    <div className="mx-auto p-3 bg-gradient-primary rounded-2xl w-fit group-hover:scale-110 transition-transform duration-300">
+                      <Icon className="w-8 h-8 text-primary-foreground" />
                     </div>
                     <div className="space-y-2">
-                      <p className="text-sm font-medium text-primary uppercase tracking-wider">
-                        {feature.subtitle}
-                      </p>
-                      <h3 className="text-xl font-bold text-foreground">
+                      <h3 className="text-lg font-bold text-foreground">
                         {feature.title}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">

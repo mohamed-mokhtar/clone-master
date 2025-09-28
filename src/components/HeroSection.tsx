@@ -1,36 +1,34 @@
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { CreditCard, DollarSign, Car, Home, Building } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import heroImage from '@/assets/hero-woman.jpg';
 
-const financialServices = [
-  {
-    icon: CreditCard,
-    title: "Credit Cards",
-    description: "Find the perfect credit card for your lifestyle"
-  },
-  {
-    icon: DollarSign, 
-    title: "Personal Loan",
-    description: "Quick approval for personal financial needs"
-  },
-  {
-    icon: Car,
-    title: "Auto Loan", 
-    description: "Competitive rates for your dream car"
-  },
-  {
-    icon: Home,
-    title: "Mortgages",
-    description: "Home financing made simple"
-  },
-  {
-    icon: Building,
-    title: "Current & Savings account",
-    description: "Banking solutions for everyday needs"
-  }
-];
-
 export const HeroSection = () => {
+  const { t } = useLanguage();
+  
+  const financialServices = [
+    {
+      icon: CreditCard,
+      title: t('hero.services.creditCards.title'),
+      description: t('hero.services.creditCards.description')
+    },
+    {
+      icon: DollarSign, 
+      title: t('hero.services.personalLoans.title'),
+      description: t('hero.services.personalLoans.description')
+    },
+    {
+      icon: Car,
+      title: t('hero.services.autoLoans.title'), 
+      description: t('hero.services.autoLoans.description')
+    },
+    {
+      icon: Home,
+      title: t('hero.services.mortgages.title'),
+      description: t('hero.services.mortgages.description')
+    }
+  ];
   return (
     <section className="min-h-[80vh] bg-gradient-hero relative overflow-hidden">
       {/* Background Elements */}
@@ -45,14 +43,20 @@ export const HeroSection = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Plethora of Financial Aids,
-                <span className="bg-gradient-primary bg-clip-text text-transparent block">
-                  All Tailor made
-                </span>
+                {t('hero.title')}
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg">
-                Your trusted partner for all banking needs in the UAE. Get personalized financial solutions from top banks.
+                {t('hero.subtitle')}
               </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+                {t('hero.getStarted')}
+              </Button>
+              <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
+                {t('hero.learnMore')}
+              </Button>
             </div>
 
             {/* Service Cards Grid */}
