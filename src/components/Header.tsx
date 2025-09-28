@@ -26,6 +26,9 @@ export const Header = () => {
           <a href="#calculators" className="text-foreground hover:text-primary transition-colors">
             {t('header.calculators')}
           </a>
+          <a href="/personal-loan-list" className="text-foreground hover:text-primary transition-colors">
+            {t('header.personalLoan')}
+          </a>
           <a href="#about" className="text-foreground hover:text-primary transition-colors">
             {t('header.aboutUs')}
           </a>
@@ -68,6 +71,9 @@ export const Header = () => {
             </a>
             <a href="#calculators" className="text-foreground hover:text-primary transition-colors">
               {t('header.calculators')}
+            </a>
+            <a href="/personal-loan-list" className="text-foreground hover:text-primary transition-colors">
+              {t('header.personalLoan')}
             </a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors">
               {t('header.aboutUs')}

@@ -11,7 +11,9 @@
     "whatsapp": "WhatsApp",
     "whatsappSupport": "WhatsApp Support",
     "signup": "Sign up",
-    "language": "Language"
+    "language": "Language",
+    "personalLoan": "Personal Loans",
+    "signUp": "Sign Up"
   },
   "hero": {
     "title": "Smart Banking Solutions for Your Financial Future",
@@ -179,5 +181,43 @@
     "next": "Next",
     "previous": "Previous",
     "submit": "Submit"
+  },
+  "loanList": {
+    "hero": {
+      "title": "You're in Luck! Check Out These Loan Matches",
+      "edit": "Edit"
+    },
+    "filters": {
+      "title": "Filters",
+      "reset": "Reset",
+      "banks": "Banks",
+      "islamicFinance": "Islamic Finance",
+      "salaryTransfer": "Salary Transfer",
+      "salaryTransferRequired": "Salary Transfer Required",
+      "noSalaryTransfer": "No Salary Transfer"
+    },
+    "noResults": {
+      "title": "Salary Criteria Not Met",
+      "description": "Unfortunately, your monthly salary does not meet the minimum criteria required to apply for this loan.",
+      "assistance": "For further assistance, you can contact our Experts",
+      "consultExpert": "Consult an Expert"
+    },
+    "providers": {
+      "title": "Loan providers"
+    },
+    "calculator": {
+      "title": "Personal Loan Calculator",
+      "loanAmount": "Loan Amount",
+      "monthlySalary": "Monthly Salary",
+      "tenure": "Loan Tenure",
+      "months": "months",
+      "employmentType": "Employment Type",
+      "salaried": "Salaried",
+      "business": "Business",
+      "calculate": "Calculate",
+      "result": "Calculation Result:",
+      "emi": "Monthly EMI",
+      "totalAmount": "Total Amount"
+    }
   }
 }

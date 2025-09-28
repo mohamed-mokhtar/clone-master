@@ -11,7 +11,9 @@
     "whatsapp": "واتساب",
     "whatsappSupport": "دعم واتساب",
     "signup": "إنشاء حساب",
-    "language": "اللغة"
+    "language": "اللغة",
+    "personalLoan": "القروض الشخصية",
+    "signUp": "إنشاء حساب"
   },
   "hero": {
     "title": "حلول مصرفية ذكية لمستقبلك المالي",
@@ -179,5 +181,43 @@
     "next": "التالي",
     "previous": "السابق",
     "submit": "إرسال"
+  },
+  "loanList": {
+    "hero": {
+      "title": "أنت محظوظ! تحقق من هذه القروض المطابقة",
+      "edit": "تعديل"
+    },
+    "filters": {
+      "title": "المرشحات",
+      "reset": "إعادة تعيين",
+      "banks": "البنوك",
+      "islamicFinance": "التمويل الإسلامي",
+      "salaryTransfer": "تحويل الراتب",
+      "salaryTransferRequired": "تحويل الراتب مطلوب",
+      "noSalaryTransfer": "لا يوجد تحويل راتب"
+    },
+    "noResults": {
+      "title": "معايير الراتب غير مستوفاة",
+      "description": "للأسف، راتبك الشهري لا يلبي الحد الأدنى من المعايير المطلوبة للتقدم بطلب للحصول على هذا القرض.",
+      "assistance": "للحصول على مساعدة إضافية، يمكنك الاتصال بخبرائنا",
+      "consultExpert": "استشر خبير"
+    },
+    "providers": {
+      "title": "مقدمو القروض"
+    },
+    "calculator": {
+      "title": "حاسبة القرض الشخصي",
+      "loanAmount": "مبلغ القرض",
+      "monthlySalary": "الراتب الشهري",
+      "tenure": "مدة القرض",
+      "months": "شهر",
+      "employmentType": "نوع التوظيف",
+      "salaried": "موظف",
+      "business": "أعمال",
+      "calculate": "احسب",
+      "result": "نتيجة الحساب:",
+      "emi": "القسط الشهري",
+      "totalAmount": "المبلغ الإجمالي"
+    }
   }
 }
