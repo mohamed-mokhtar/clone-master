@@ -2,7 +2,7 @@
   "defaultLanguage": "ar",
   "supportedLanguages": ["ar", "en"],
   "app": {
-    "name": "Finmart",
+    "name": "Finbank",
     "version": "1.0.0",
     "rtlLanguages": ["ar"],
     "features": {
@@ -14,7 +14,7 @@
   },
   "contact": {
     "phone": "+971 4 123 4567",
-    "email": "info@finmart.ae",
+    "email": "info@finbank.ae",
     "whatsapp": "+971 50 123 4567",
     "address": "Dubai, United Arab Emirates"
   },
