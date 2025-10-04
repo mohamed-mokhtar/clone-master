@@ -1,11 +1,19 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CreditCard, DollarSign, Car, Home, Building } from 'lucide-react';
+import { CreditCard, DollarSign, Car, Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroImage from '@/assets/hero-woman.jpg';
 
 export const HeroSection = () => {
   const { t } = useLanguage();
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
   
   const financialServices = [
     {
@@ -51,10 +59,17 @@ export const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
-                {t('hero.getStarted')}
-              </Button>
-              <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
+              <Link to="/personal-loan-list">
+                <Button size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300 w-full sm:w-auto">
+                  {t('hero.getStarted')}
+                </Button>
+              </Link>
+              <Button 
+                onClick={() => scrollToSection('calculators')}
+                variant="outline" 
+                size="lg" 
+                className="border-primary/20 hover:bg-primary hover:text-primary-foreground"
+              >
                 {t('hero.learnMore')}
               </Button>
             </div>
@@ -66,6 +81,7 @@ export const HeroSection = () => {
                 return (
                   <Card
                     key={index}
+                    onClick={() => scrollToSection(index === 1 ? 'calculators' : 'services')}
                     className="p-4 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 cursor-pointer group"
                   >
                     <div className="flex items-center space-x-3">

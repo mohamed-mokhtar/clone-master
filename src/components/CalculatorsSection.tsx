@@ -3,10 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Calculator, Home, Car, PiggyBank, CreditCard, DollarSign } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useToast } from '@/hooks/use-toast';
 import calculatorIcon from '@/assets/calculator-icon.png';
 
 export const CalculatorsSection = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [salary, setSalary] = useState(5000);
   const [employmentType, setEmploymentType] = useState('salaried');
 
@@ -43,10 +45,20 @@ export const CalculatorsSection = () => {
     }
   ];
 
+  const handleCalculatorClick = (title: string) => {
+    toast({
+      title: "Calculator",
+      description: `${title} - Coming soon!`,
+    });
+  };
+
   const calculateEligibility = () => {
-    // Simple eligibility calculation
-    const eligibleAmount = salary * 60; // 60x salary as rough estimate
-    alert(`Your estimated loan eligibility: AED ${eligibleAmount.toLocaleString()}`);
+    const eligibleAmount = salary * 60;
+    toast({
+      title: "Loan Eligibility Result",
+      description: `Your estimated loan eligibility: AED ${eligibleAmount.toLocaleString()}`,
+      duration: 5000,
+    });
   };
   return (
     <section id="calculators" className="py-16 bg-background">
@@ -70,6 +82,7 @@ export const CalculatorsSection = () => {
             return (
               <Card
                 key={index}
+                onClick={() => handleCalculatorClick(calc.title)}
                 className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
               >
                 <div className="space-y-4">
@@ -85,6 +98,10 @@ export const CalculatorsSection = () => {
                     </p>
                   </div>
                   <Button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCalculatorClick(calc.title);
+                    }}
                     variant="outline" 
                     size="sm"
                     className="w-full border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"

@@ -51,7 +51,7 @@ export const TrustSection = () => {
     }
   ];
   return (
-    <section className="py-16 bg-muted/30">
+    <section id="about" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Trust Features */}
         <div className="space-y-12">

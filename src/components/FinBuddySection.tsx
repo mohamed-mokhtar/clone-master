@@ -19,7 +19,7 @@ export const FinBuddySection = () => {
     }
   };
   return (
-    <section className="py-16 bg-gradient-accent relative overflow-hidden">
+    <section id="finbuddy" className="py-16 bg-gradient-accent relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-1/4 w-2 h-2 bg-white rounded-full animate-pulse"></div>

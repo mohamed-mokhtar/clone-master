@@ -2,9 +2,18 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useToast } from '@/hooks/use-toast';
 
 export const BlogSection = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
+
+  const handleReadMore = (title: string) => {
+    toast({
+      title: "Blog Article",
+      description: `"${title}" - Full article coming soon!`,
+    });
+  };
   
   const blogPosts = [
     {
@@ -50,6 +59,7 @@ export const BlogSection = () => {
             {blogPosts.map((post, index) => (
               <Card
                 key={index}
+                onClick={() => handleReadMore(t(post.titleKey))}
                 className="overflow-hidden bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
               >
                 {/* Featured Image */}
@@ -90,6 +100,10 @@ export const BlogSection = () => {
                   </div>
 
                   <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleReadMore(t(post.titleKey));
+                    }}
                     variant="ghost"
                     size="sm"
                     className="group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 p-0 h-auto font-semibold"
@@ -105,6 +119,10 @@ export const BlogSection = () => {
           {/* View All Button */}
           <div className="text-center">
             <Button 
+              onClick={() => toast({
+                title: "Blog",
+                description: "Full blog section coming soon!",
+              })}
               size="lg"
               className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
             >

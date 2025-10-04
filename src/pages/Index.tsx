@@ -6,6 +6,7 @@ import { TrustSection } from '@/components/TrustSection';
 import { BankingPartners } from '@/components/BankingPartners';
 import { BlogSection } from '@/components/BlogSection';
 import { Footer } from '@/components/Footer';
+import { Toaster } from '@/components/ui/toaster';
 
 const Index = () => {
   return (
@@ -13,13 +14,16 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <section id="services">
+          <TrustSection />
+          <BankingPartners />
+        </section>
         <FinBuddySection />
         <CalculatorsSection />
-        <TrustSection />
-        <BankingPartners />
         <BlogSection />
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
 };

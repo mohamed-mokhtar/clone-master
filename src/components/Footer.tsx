@@ -1,9 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { MessageCircle, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import appSettings from '@/settings/app-settings.json';
 
 export const Footer = () => {
   const { t } = useLanguage();
+
+  const handleWhatsApp = () => {
+    const phone = appSettings.contact.whatsapp.replace(/\s+/g, '');
+    window.open(`https://wa.me/${phone}`, '_blank');
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <footer className="bg-gradient-accent text-white">
       <div className="container mx-auto px-4 py-16">
@@ -22,14 +36,14 @@ export const Footer = () => {
                 <MapPin className="w-4 h-4 text-white/60" />
                 <span className="text-white/80">Dubai, United Arab Emirates</span>
               </div>
-              <div className="flex items-center space-x-3 text-sm">
+              <a href={`tel:${appSettings.contact.phone}`} className="flex items-center space-x-3 text-sm hover:text-white transition-colors">
                 <Phone className="w-4 h-4 text-white/60" />
-                <span className="text-white/80">+971 4 123 4567</span>
-              </div>
-              <div className="flex items-center space-x-3 text-sm">
+                <span className="text-white/80">{appSettings.contact.phone}</span>
+              </a>
+              <a href={`mailto:${appSettings.contact.email}`} className="flex items-center space-x-3 text-sm hover:text-white transition-colors">
                 <Mail className="w-4 h-4 text-white/60" />
-                <span className="text-white/80">info@finmart.ae</span>
-              </div>
+                <span className="text-white/80">{appSettings.contact.email}</span>
+              </a>
             </div>
           </div>
 
@@ -37,33 +51,34 @@ export const Footer = () => {
           <div className="space-y-6">
             <h4 className="text-lg font-semibold">{t('footer.services.title')}</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.creditCards')}</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.personalLoans')}</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.autoLoans')}</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.mortgages')}</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.accounts')}</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">{t('footer.services.business')}</a></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.services.creditCards')}</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.services.personalLoans')}</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.services.autoLoans')}</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.services.mortgages')}</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.services.accounts')}</button></li>
+              <li><button onClick={() => scrollToSection('services')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.services.business')}</button></li>
             </ul>
           </div>
 
           {/* Calculators */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold">Calculators</h4>
+            <h4 className="text-lg font-semibold">{t('footer.calculators.title')}</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Eligibility Calculator</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">EMI Calculator</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Car Loan Calculator</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Home Loan Calculator</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">DBR Calculator</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Interest Calculator</a></li>
+              <li><button onClick={() => scrollToSection('calculators')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.calculators.eligibility')}</button></li>
+              <li><button onClick={() => scrollToSection('calculators')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.calculators.emi')}</button></li>
+              <li><button onClick={() => scrollToSection('calculators')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.calculators.carLoan')}</button></li>
+              <li><button onClick={() => scrollToSection('calculators')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.calculators.homeLoan')}</button></li>
+              <li><button onClick={() => scrollToSection('calculators')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.calculators.dbr')}</button></li>
+              <li><button onClick={() => scrollToSection('calculators')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.calculators.interest')}</button></li>
             </ul>
           </div>
 
           {/* Support & Contact */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold">Support</h4>
+            <h4 className="text-lg font-semibold">{t('footer.support.title')}</h4>
             <div className="space-y-4">
               <Button 
+                onClick={handleWhatsApp}
                 size="sm"
                 className="w-full bg-green-500 hover:bg-green-600 transition-all duration-300"
               >
@@ -72,23 +87,23 @@ export const Footer = () => {
               </Button>
               
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-white/80 hover:text-white transition-colors">About Us</a></li>
+                <li><button onClick={() => scrollToSection('finbuddy')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.support.helpCenter')}</button></li>
+                <li><button onClick={() => scrollToSection('about')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.support.privacy')}</button></li>
+                <li><button onClick={() => scrollToSection('about')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.support.terms')}</button></li>
+                <li><button onClick={() => scrollToSection('about')} className="text-white/80 hover:text-white transition-colors text-left">{t('footer.support.about')}</button></li>
               </ul>
 
               <div className="flex space-x-3 pt-3">
-                <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                <a href={appSettings.social.facebook} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
                   <Facebook className="w-4 h-4" />
                 </a>
-                <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                <a href={appSettings.social.twitter} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
                   <Twitter className="w-4 h-4" />
                 </a>
-                <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                <a href={appSettings.social.instagram} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
                   <Instagram className="w-4 h-4" />
                 </a>
-                <a href="#" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                <a href={appSettings.social.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
                   <Linkedin className="w-4 h-4" />
                 </a>
               </div>
@@ -103,12 +118,12 @@ export const Footer = () => {
                 {t('footer.legal.copyright')}
               </p>
             <div className="flex items-center space-x-6 text-sm">
-              <a href="#" className="text-white/60 hover:text-white transition-colors">
-                DFSA Regulated
-              </a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors">
-                Central Bank of UAE
-              </a>
+              <span className="text-white/60">
+                {t('footer.legal.dfsa')}
+              </span>
+              <span className="text-white/60">
+                {t('footer.legal.regulated')}
+              </span>
             </div>
           </div>
         </div>

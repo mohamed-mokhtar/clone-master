@@ -19,7 +19,7 @@ export const LanguageSwitcher = () => {
           <span>{language.toUpperCase()}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="bg-popover z-50">
         <DropdownMenuItem 
           onClick={() => setLanguage('ar')}
           className={language === 'ar' ? 'bg-primary/10' : ''}
