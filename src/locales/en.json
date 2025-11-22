@@ -180,6 +180,7 @@
     "title": "Latest Financial News & Tips",
     "subtitle": "Check out the latest articles and financial tips from our experts",
     "readMore": "Read More",
+    "backToArticles": "Back to Articles",
     "articles": {
       "creditScore": {
         "title": "How to Improve Your Credit Score",
@@ -280,5 +281,14 @@
       "emi": "Monthly EMI",
       "totalAmount": "Total Amount"
     }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have questions? We're here to help. Reach out to us and we'll get back to you as soon as possible.",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "whatsapp": "WhatsApp",
+    "businessHours": "Business Hours"
   }
 }
