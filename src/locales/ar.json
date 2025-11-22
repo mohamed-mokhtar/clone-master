@@ -87,6 +87,67 @@
       "monthlySalary": "الراتب الشهري بالدرهم",
       "checkEligibility": "تحقق من الأهلية",
       "disclaimer": "هذه الحاسبة استرشادية وتخضع للتقييم المالي من فين بنك"
+    },
+    "carLoanCalc": {
+      "title": "حاسبة قرض السيارة",
+      "carPrice": "سعر السيارة (درهم)",
+      "downPayment": "الدفعة الأولى (درهم)",
+      "interestRate": "معدل الفائدة (%)",
+      "tenure": "مدة القرض (سنوات)",
+      "calculate": "احسب القسط الشهري",
+      "monthlyEMI": "القسط الشهري",
+      "totalInterest": "إجمالي الفائدة",
+      "totalAmount": "المبلغ الإجمالي المستحق"
+    },
+    "dbrCalc": {
+      "title": "حاسبة نسبة الدين",
+      "monthlyIncome": "الدخل الشهري (درهم)",
+      "existingLoans": "أقساط القروض الحالية (درهم)",
+      "creditCards": "دفعات البطاقات الائتمانية (درهم)",
+      "otherDebts": "ديون شهرية أخرى (درهم)",
+      "calculate": "احسب نسبة الدين",
+      "dbrRatio": "نسبة الدين إلى الدخل",
+      "status": "الحالة",
+      "healthy": "صحية - قدرة اقتراض جيدة",
+      "moderate": "متوسطة - قدرة اقتراض محدودة",
+      "high": "عالية - قد تواجه تحديات في الموافقة على القرض"
+    },
+    "homeLoanCalc": {
+      "title": "حاسبة القرض العقاري",
+      "propertyValue": "قيمة العقار (درهم)",
+      "downPayment": "الدفعة الأولى (درهم)",
+      "interestRate": "معدل الفائدة (%)",
+      "tenure": "مدة القرض (سنوات)",
+      "calculate": "احسب القسط الشهري",
+      "loanAmount": "مبلغ القرض",
+      "monthlyEMI": "القسط الشهري",
+      "totalInterest": "إجمالي الفائدة",
+      "totalAmount": "المبلغ الإجمالي المستحق"
+    },
+    "emiCalc": {
+      "title": "حاسبة الأقساط",
+      "loanAmount": "مبلغ القرض (درهم)",
+      "interestRate": "معدل الفائدة (% سنوياً)",
+      "tenure": "مدة القرض (شهر)",
+      "calculate": "احسب القسط الشهري",
+      "monthlyEMI": "القسط الشهري",
+      "totalInterest": "إجمالي الفائدة",
+      "totalAmount": "المبلغ الإجمالي المستحق"
+    },
+    "interestCalc": {
+      "title": "حاسبة الفوائد",
+      "principal": "المبلغ الأساسي (درهم)",
+      "rate": "معدل الفائدة السنوي (%)",
+      "time": "المدة الزمنية (سنوات)",
+      "compoundFrequency": "تردد المضاعفة",
+      "yearly": "سنوياً",
+      "halfYearly": "نصف سنوي",
+      "quarterly": "ربع سنوي",
+      "monthly": "شهري",
+      "calculate": "احسب الفائدة",
+      "simpleInterest": "الفائدة البسيطة",
+      "compoundInterest": "الفائدة المركبة",
+      "totalAmount": "المبلغ الإجمالي"
     }
   },
   "trust": {
