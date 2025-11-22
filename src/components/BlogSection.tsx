@@ -2,18 +2,10 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useToast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
 
 export const BlogSection = () => {
   const { t } = useLanguage();
-  const { toast } = useToast();
-
-  const handleReadMore = (title: string) => {
-    toast({
-      title: "Blog Article",
-      description: `"${title}" - Full article coming soon!`,
-    });
-  };
   
   const blogPosts = [
     {
@@ -22,7 +14,8 @@ export const BlogSection = () => {
       date: "2024-12-03",
       readTime: "5 min read",
       category: "Personal Finance",
-      gradient: "from-blue-500 to-purple-600"
+      gradient: "from-blue-500 to-purple-600",
+      link: "/articles/credit-score"
     },
     {
       titleKey: "blog.articles.firstHome.title",
@@ -30,7 +23,8 @@ export const BlogSection = () => {
       date: "2024-12-03", 
       readTime: "7 min read",
       category: "Loan Management",
-      gradient: "from-purple-500 to-pink-600"
+      gradient: "from-purple-500 to-pink-600",
+      link: "/articles/first-home-loan"
     },
     {
       titleKey: "blog.articles.investment.title",
@@ -38,7 +32,8 @@ export const BlogSection = () => {
       date: "2024-11-27",
       readTime: "6 min read", 
       category: "Credit Cards",
-      gradient: "from-teal-500 to-blue-600"
+      gradient: "from-teal-500 to-blue-600",
+      link: "/articles/investment-tips"
     }
   ];
   return (
@@ -57,11 +52,10 @@ export const BlogSection = () => {
           {/* Blog Posts Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <Card
-                key={index}
-                onClick={() => handleReadMore(t(post.titleKey))}
-                className="overflow-hidden bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
-              >
+              <Link key={index} to={post.link}>
+                <Card
+                  className="overflow-hidden bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
+                >
                 {/* Featured Image */}
                 <div className={`h-48 bg-gradient-to-br ${post.gradient} relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
@@ -100,10 +94,6 @@ export const BlogSection = () => {
                   </div>
 
                   <Button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleReadMore(t(post.titleKey));
-                    }}
                     variant="ghost"
                     size="sm"
                     className="group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 p-0 h-auto font-semibold"
@@ -113,22 +103,21 @@ export const BlogSection = () => {
                   </Button>
                 </div>
               </Card>
+              </Link>
             ))}
           </div>
 
           {/* View All Button */}
           <div className="text-center">
-            <Button 
-              onClick={() => toast({
-                title: "Blog",
-                description: "Full blog section coming soon!",
-              })}
-              size="lg"
-              className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
-            >
-              View All Articles
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            <Link to="/#blog">
+              <Button 
+                size="lg"
+                className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+              >
+                View All Articles
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

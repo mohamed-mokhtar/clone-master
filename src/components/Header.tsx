@@ -50,6 +50,9 @@ export const Header = () => {
           <button onClick={() => scrollToSection('blog')} className="text-foreground hover:text-primary transition-colors">
             {t('header.blog')}
           </button>
+          <Link to="/contact" className="text-foreground hover:text-primary transition-colors">
+            Contact Us
+          </Link>
         </nav>
 
         {/* Right Side Actions */}
@@ -106,6 +109,9 @@ export const Header = () => {
             <button onClick={() => scrollToSection('blog')} className="text-foreground hover:text-primary transition-colors text-left">
               {t('header.blog')}
             </button>
+            <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-foreground hover:text-primary transition-colors">
+              Contact Us
+            </Link>
             <Button 
               onClick={handleWhatsApp}
               variant="outline" 
