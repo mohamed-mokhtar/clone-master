@@ -87,6 +87,67 @@
       "monthlySalary": "Monthly Salary in AED",
       "checkEligibility": "Check Eligibility",
       "disclaimer": "This calculator is only viable and subject to Finbank's financial assessment"
+    },
+    "carLoanCalc": {
+      "title": "Car Loan Calculator",
+      "carPrice": "Car Price (AED)",
+      "downPayment": "Down Payment (AED)",
+      "interestRate": "Interest Rate (%)",
+      "tenure": "Loan Tenure (Years)",
+      "calculate": "Calculate EMI",
+      "monthlyEMI": "Monthly EMI",
+      "totalInterest": "Total Interest",
+      "totalAmount": "Total Amount Payable"
+    },
+    "dbrCalc": {
+      "title": "DBR Calculator",
+      "monthlyIncome": "Monthly Income (AED)",
+      "existingLoans": "Existing Loan EMIs (AED)",
+      "creditCards": "Credit Card Payments (AED)",
+      "otherDebts": "Other Monthly Debts (AED)",
+      "calculate": "Calculate DBR",
+      "dbrRatio": "Debt to Income Ratio",
+      "status": "Status",
+      "healthy": "Healthy - Good borrowing capacity",
+      "moderate": "Moderate - Limited borrowing capacity",
+      "high": "High - May face loan approval challenges"
+    },
+    "homeLoanCalc": {
+      "title": "Home Loan Calculator",
+      "propertyValue": "Property Value (AED)",
+      "downPayment": "Down Payment (AED)",
+      "interestRate": "Interest Rate (%)",
+      "tenure": "Loan Tenure (Years)",
+      "calculate": "Calculate EMI",
+      "loanAmount": "Loan Amount",
+      "monthlyEMI": "Monthly EMI",
+      "totalInterest": "Total Interest",
+      "totalAmount": "Total Amount Payable"
+    },
+    "emiCalc": {
+      "title": "EMI Calculator",
+      "loanAmount": "Loan Amount (AED)",
+      "interestRate": "Interest Rate (% per annum)",
+      "tenure": "Loan Tenure (Months)",
+      "calculate": "Calculate EMI",
+      "monthlyEMI": "Monthly EMI",
+      "totalInterest": "Total Interest",
+      "totalAmount": "Total Amount Payable"
+    },
+    "interestCalc": {
+      "title": "Interest Calculator",
+      "principal": "Principal Amount (AED)",
+      "rate": "Annual Interest Rate (%)",
+      "time": "Time Period (Years)",
+      "compoundFrequency": "Compounding Frequency",
+      "yearly": "Yearly",
+      "halfYearly": "Half-Yearly",
+      "quarterly": "Quarterly",
+      "monthly": "Monthly",
+      "calculate": "Calculate Interest",
+      "simpleInterest": "Simple Interest",
+      "compoundInterest": "Compound Interest",
+      "totalAmount": "Total Amount"
     }
   },
   "trust": {
