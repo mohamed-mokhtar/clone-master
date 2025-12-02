@@ -1,13 +1,20 @@
 import { Card } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+import emiratesNBD from '@/assets/banks/emirates-nbd-uae.png';
+import dubaiIslamicBank from '@/assets/banks/dubai-islamic-bank.png';
+import adcb from '@/assets/banks/adcb.png';
+import fab from '@/assets/banks/fab.png';
+import hsbc from '@/assets/banks/hsbc.png';
+import standardChartered from '@/assets/banks/standard-chartered.svg';
+
 const bankLogos = [
-  { name: "Emirates NBD", color: "#00B04F" },
-  { name: "Dubai Islamic Bank", color: "#0066CC" }, 
-  { name: "ADCB", color: "#E31E24" },
-  { name: "FAB", color: "#FF6B35" },
-  { name: "HSBC", color: "#DB0011" },
-  { name: "Standard Chartered", color: "#0F6B41" }
+  { name: "Emirates NBD", logo: emiratesNBD },
+  { name: "Dubai Islamic Bank", logo: dubaiIslamicBank }, 
+  { name: "ADCB", logo: adcb },
+  { name: "FAB", logo: fab },
+  { name: "HSBC", logo: hsbc },
+  { name: "Standard Chartered", logo: standardChartered }
 ];
 
 export const BankingPartners = () => {
@@ -30,15 +37,14 @@ export const BankingPartners = () => {
             {bankLogos.map((bank, index) => (
               <Card
                 key={index}
-                className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
+                className="p-6 bg-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
               >
                 <div className="flex items-center justify-center h-16">
-                  <div 
-                    className="w-full h-12 rounded-lg flex items-center justify-center text-white font-bold text-sm text-center group-hover:scale-105 transition-transform duration-300"
-                    style={{ backgroundColor: bank.color }}
-                  >
-                    {bank.name}
-                  </div>
+                  <img 
+                    src={bank.logo} 
+                    alt={`${bank.name} logo`}
+                    className="max-h-12 max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
               </Card>
             ))}
