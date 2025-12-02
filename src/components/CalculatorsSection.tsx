@@ -213,39 +213,49 @@ export const CalculatorsSection = () => {
     });
   };
   return (
-    <section id="calculators" className="py-16 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center space-y-4 mb-12">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <img src={calculatorIcon} alt="Calculator" className="w-12 h-12" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              {t('calculators.title')}
-            </h2>
+    <section id="calculators" className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.015]" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+        backgroundSize: '48px 48px'
+      }}></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <div className="text-center space-y-4 mb-14 md:mb-16 max-w-3xl mx-auto">
+          <div className="flex items-center justify-center space-x-4 mb-4">
+            <div className="p-3 bg-primary/10 rounded-2xl">
+              <img src={calculatorIcon} alt="Calculator" className="w-10 h-10 md:w-12 md:h-12" />
+            </div>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground">
+            {t('calculators.title')}
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             {t('calculators.subtitle')}
           </p>
         </div>
 
         {/* Calculators Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-14 md:mb-16">
           {calculators.map((calc, index) => {
             const Icon = calc.icon;
             return (
               <Card
                 key={index}
                 onClick={calc.onClick}
-                className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
+                className="p-6 md:p-7 bg-card border-0 shadow-card hover:shadow-elegant transition-all duration-500 group cursor-pointer hover:-translate-y-2"
+                style={{ animationDelay: `${index * 80}ms` }}
               >
-                <div className="space-y-4">
-                  <div className="p-3 bg-gradient-primary rounded-2xl w-fit group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-primary-foreground" />
+                <div className="space-y-5">
+                  <div className="p-3.5 bg-gradient-primary rounded-2xl w-fit group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-soft">
+                    <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary-foreground" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-lg md:text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                       {calc.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
                       {calc.description}
                     </p>
                   </div>
@@ -256,7 +266,7 @@ export const CalculatorsSection = () => {
                     }}
                     variant="outline" 
                     size="sm"
-                    className="w-full border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    className="w-full border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
                   >
                     {t('calculators.tryNow')}
                   </Button>
@@ -267,40 +277,43 @@ export const CalculatorsSection = () => {
         </div>
 
         {/* Featured Calculator */}
-        <Card id="featured-calculator" className="p-8 bg-gradient-card border-0 shadow-elegant">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
+        <Card id="featured-calculator" className="p-8 md:p-10 lg:p-12 bg-card border-0 shadow-elegant overflow-hidden relative">
+          {/* Background Decoration */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+          
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 relative z-10">
+            <div className="space-y-6 md:space-y-8">
               <div className="space-y-3">
-                <h3 className="text-2xl font-bold text-foreground">
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground">
                   {t('calculators.featured.title')}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                   {t('calculators.featured.description')}
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex space-x-4">
+              <div className="space-y-5">
+                <div className="flex flex-wrap gap-3">
                   <Button 
                     variant={employmentType === 'salaried' ? "default" : "outline"}
-                    className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                    className={employmentType === 'salaried' ? "bg-gradient-primary hover:shadow-glow" : "border-primary/30 hover:bg-primary hover:text-primary-foreground"}
                     onClick={() => setEmploymentType('salaried')}
                   >
                     {t('calculators.featured.salaried')}
                   </Button>
                   <Button 
                     variant={employmentType === 'business' ? "default" : "outline"}
-                    className="border-primary/20 hover:bg-primary hover:text-primary-foreground"
+                    className={employmentType === 'business' ? "bg-gradient-primary hover:shadow-glow" : "border-primary/30 hover:bg-primary hover:text-primary-foreground"}
                     onClick={() => setEmploymentType('business')}
                   >
                     {t('calculators.featured.business')}
                   </Button>
                 </div>
                 
-                <div className="bg-primary/5 rounded-xl p-4 border border-primary/10">
-                  <p className="text-sm text-muted-foreground mb-2">{t('calculators.featured.monthlySalary')}</p>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl font-bold text-primary">AED {salary.toLocaleString()}</span>
+                <div className="bg-primary/5 rounded-2xl p-5 md:p-6 border border-primary/10">
+                  <p className="text-sm text-muted-foreground mb-3 font-medium">{t('calculators.featured.monthlySalary')}</p>
+                  <div className="flex items-center space-x-4">
+                    <span className="text-2xl md:text-3xl font-bold text-primary font-display">AED {salary.toLocaleString()}</span>
                     <div className="flex-1">
                       <input 
                         type="range" 
@@ -309,16 +322,16 @@ export const CalculatorsSection = () => {
                         step="1000"
                         value={salary}
                         onChange={(e) => setSalary(Number(e.target.value))}
-                        className="w-full h-2 bg-muted rounded-full appearance-none cursor-pointer"
+                        className="w-full h-2 bg-muted rounded-full appearance-none cursor-pointer accent-primary"
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground">100K</span>
+                    <span className="text-sm text-muted-foreground font-medium">100K</span>
                   </div>
                 </div>
 
                 <Button 
                   size="lg" 
-                  className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                  className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-500 hover:scale-[1.02] font-semibold text-base"
                   onClick={calculateEligibility}
                 >
                   {t('calculators.featured.checkEligibility')}
@@ -333,14 +346,17 @@ export const CalculatorsSection = () => {
 
             <div className="flex items-center justify-center">
               <div className="relative">
-                <div className="w-80 h-80 bg-gradient-primary rounded-full opacity-10 animate-pulse"></div>
+                <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-primary rounded-full opacity-10 animate-pulse-soft"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <img
                     src={calculatorIcon}
                     alt="Financial Calculator"
-                    className="w-32 h-32 drop-shadow-2xl"
+                    className="w-28 h-28 md:w-36 md:h-36 drop-shadow-2xl animate-float-slow"
                   />
                 </div>
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-accent rounded-2xl opacity-60 animate-float rotate-12"></div>
+                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-primary rounded-xl opacity-50 animate-bounce-soft -rotate-12"></div>
               </div>
             </div>
           </div>
