@@ -1,9 +1,8 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calculator, Home, Car, PiggyBank, CreditCard, DollarSign } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -15,12 +14,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { CalculatorResultDialog } from './CalculatorResultDialog';
 import calculatorIcon from '@/assets/calculator-icon.png';
 
 export const CalculatorsSection = () => {
   const { t } = useLanguage();
-  const { toast } = useToast();
-  const [salary, setSalary] = useState(5000);
+  const [salary, setSalary] = useState(15000);
   const [employmentType, setEmploymentType] = useState('salaried');
 
   // Dialog states
@@ -29,6 +28,14 @@ export const CalculatorsSection = () => {
   const [homeLoanOpen, setHomeLoanOpen] = useState(false);
   const [emiOpen, setEmiOpen] = useState(false);
   const [interestOpen, setInterestOpen] = useState(false);
+
+  // Result dialog state
+  const [resultDialogOpen, setResultDialogOpen] = useState(false);
+  const [resultDialogData, setResultDialogData] = useState<{
+    title: string;
+    results: { label: string; value: string; highlight?: boolean }[];
+    status?: { type: 'success' | 'warning' | 'error'; message: string };
+  }>({ title: '', results: [] });
 
   // Car Loan states
   const [carPrice, setCarPrice] = useState(100000);
@@ -58,6 +65,12 @@ export const CalculatorsSection = () => {
   const [interestRate, setInterestRate] = useState(5);
   const [timePeriod, setTimePeriod] = useState(5);
   const [compoundFrequency, setCompoundFrequency] = useState('yearly');
+
+  // Live calculation for featured calculator
+  const eligibilityResult = useMemo(() => {
+    const multiplier = employmentType === 'salaried' ? 60 : 48;
+    return salary * multiplier;
+  }, [salary, employmentType]);
 
   const calculators = [
     {
@@ -98,7 +111,7 @@ export const CalculatorsSection = () => {
     }
   ];
 
-  // Calculation functions
+  // Calculation functions with result dialogs
   const calculateCarLoan = () => {
     const loanAmount = carPrice - carDownPayment;
     const monthlyRate = carInterestRate / 100 / 12;
@@ -107,37 +120,43 @@ export const CalculatorsSection = () => {
     const totalAmount = emi * numPayments;
     const totalInterest = totalAmount - loanAmount;
 
-    toast({
+    setCarLoanOpen(false);
+    setResultDialogData({
       title: t('calculators.carLoanCalc.title'),
-      description: (
-        <div className="space-y-2 text-sm">
-          <p><strong>{t('calculators.carLoanCalc.monthlyEMI')}:</strong> AED {emi.toFixed(2)}</p>
-          <p><strong>{t('calculators.carLoanCalc.totalInterest')}:</strong> AED {totalInterest.toFixed(2)}</p>
-          <p><strong>{t('calculators.carLoanCalc.totalAmount')}:</strong> AED {totalAmount.toFixed(2)}</p>
-        </div>
-      ),
-      duration: 7000,
+      results: [
+        { label: t('calculators.carLoanCalc.monthlyEMI'), value: `AED ${emi.toFixed(2)}`, highlight: true },
+        { label: t('calculators.carLoanCalc.totalInterest'), value: `AED ${totalInterest.toLocaleString()}` },
+        { label: t('calculators.carLoanCalc.totalAmount'), value: `AED ${totalAmount.toLocaleString()}` },
+      ],
+      status: { type: 'success', message: 'Your car loan calculation is complete!' }
     });
+    setResultDialogOpen(true);
   };
 
   const calculateDBR = () => {
     const totalDebts = existingLoans + creditCardPayments + otherDebts;
     const dbrRatio = (totalDebts / monthlyIncome) * 100;
-    let status = '';
-    if (dbrRatio <= 40) status = t('calculators.dbrCalc.healthy');
-    else if (dbrRatio <= 55) status = t('calculators.dbrCalc.moderate');
-    else status = t('calculators.dbrCalc.high');
+    let status: { type: 'success' | 'warning' | 'error'; message: string };
+    
+    if (dbrRatio <= 40) {
+      status = { type: 'success', message: t('calculators.dbrCalc.healthy') };
+    } else if (dbrRatio <= 55) {
+      status = { type: 'warning', message: t('calculators.dbrCalc.moderate') };
+    } else {
+      status = { type: 'error', message: t('calculators.dbrCalc.high') };
+    }
 
-    toast({
+    setDbrOpen(false);
+    setResultDialogData({
       title: t('calculators.dbrCalc.title'),
-      description: (
-        <div className="space-y-2 text-sm">
-          <p><strong>{t('calculators.dbrCalc.dbrRatio')}:</strong> {dbrRatio.toFixed(2)}%</p>
-          <p><strong>{t('calculators.dbrCalc.status')}:</strong> {status}</p>
-        </div>
-      ),
-      duration: 7000,
+      results: [
+        { label: t('calculators.dbrCalc.dbrRatio'), value: `${dbrRatio.toFixed(1)}%`, highlight: true },
+        { label: 'Total Monthly Debts', value: `AED ${totalDebts.toLocaleString()}` },
+        { label: 'Monthly Income', value: `AED ${monthlyIncome.toLocaleString()}` },
+      ],
+      status
     });
+    setResultDialogOpen(true);
   };
 
   const calculateHomeLoan = () => {
@@ -148,18 +167,18 @@ export const CalculatorsSection = () => {
     const totalAmount = emi * numPayments;
     const totalInterest = totalAmount - loanAmount;
 
-    toast({
+    setHomeLoanOpen(false);
+    setResultDialogData({
       title: t('calculators.homeLoanCalc.title'),
-      description: (
-        <div className="space-y-2 text-sm">
-          <p><strong>{t('calculators.homeLoanCalc.loanAmount')}:</strong> AED {loanAmount.toLocaleString()}</p>
-          <p><strong>{t('calculators.homeLoanCalc.monthlyEMI')}:</strong> AED {emi.toFixed(2)}</p>
-          <p><strong>{t('calculators.homeLoanCalc.totalInterest')}:</strong> AED {totalInterest.toFixed(2)}</p>
-          <p><strong>{t('calculators.homeLoanCalc.totalAmount')}:</strong> AED {totalAmount.toFixed(2)}</p>
-        </div>
-      ),
-      duration: 7000,
+      results: [
+        { label: t('calculators.homeLoanCalc.loanAmount'), value: `AED ${loanAmount.toLocaleString()}` },
+        { label: t('calculators.homeLoanCalc.monthlyEMI'), value: `AED ${emi.toFixed(2)}`, highlight: true },
+        { label: t('calculators.homeLoanCalc.totalInterest'), value: `AED ${totalInterest.toLocaleString()}` },
+        { label: t('calculators.homeLoanCalc.totalAmount'), value: `AED ${totalAmount.toLocaleString()}` },
+      ],
+      status: { type: 'success', message: 'Your home loan calculation is ready!' }
     });
+    setResultDialogOpen(true);
   };
 
   const calculateEMI = () => {
@@ -168,17 +187,17 @@ export const CalculatorsSection = () => {
     const totalAmount = emi * emiTenure;
     const totalInterest = totalAmount - emiLoanAmount;
 
-    toast({
+    setEmiOpen(false);
+    setResultDialogData({
       title: t('calculators.emiCalc.title'),
-      description: (
-        <div className="space-y-2 text-sm">
-          <p><strong>{t('calculators.emiCalc.monthlyEMI')}:</strong> AED {emi.toFixed(2)}</p>
-          <p><strong>{t('calculators.emiCalc.totalInterest')}:</strong> AED {totalInterest.toFixed(2)}</p>
-          <p><strong>{t('calculators.emiCalc.totalAmount')}:</strong> AED {totalAmount.toFixed(2)}</p>
-        </div>
-      ),
-      duration: 7000,
+      results: [
+        { label: t('calculators.emiCalc.monthlyEMI'), value: `AED ${emi.toFixed(2)}`, highlight: true },
+        { label: t('calculators.emiCalc.totalInterest'), value: `AED ${totalInterest.toLocaleString()}` },
+        { label: t('calculators.emiCalc.totalAmount'), value: `AED ${totalAmount.toLocaleString()}` },
+      ],
+      status: { type: 'success', message: 'EMI calculation complete!' }
     });
+    setResultDialogOpen(true);
   };
 
   const calculateInterest = () => {
@@ -191,27 +210,19 @@ export const CalculatorsSection = () => {
     
     const compoundInterest = principal * Math.pow((1 + interestRate / (100 * n)), n * timePeriod) - principal;
 
-    toast({
+    setInterestOpen(false);
+    setResultDialogData({
       title: t('calculators.interestCalc.title'),
-      description: (
-        <div className="space-y-2 text-sm">
-          <p><strong>{t('calculators.interestCalc.simpleInterest')}:</strong> AED {simpleInterest.toFixed(2)}</p>
-          <p><strong>{t('calculators.interestCalc.compoundInterest')}:</strong> AED {compoundInterest.toFixed(2)}</p>
-          <p><strong>{t('calculators.interestCalc.totalAmount')}:</strong> AED {(principal + compoundInterest).toFixed(2)}</p>
-        </div>
-      ),
-      duration: 7000,
+      results: [
+        { label: t('calculators.interestCalc.simpleInterest'), value: `AED ${simpleInterest.toLocaleString()}` },
+        { label: t('calculators.interestCalc.compoundInterest'), value: `AED ${compoundInterest.toLocaleString()}`, highlight: true },
+        { label: t('calculators.interestCalc.totalAmount'), value: `AED ${(principal + compoundInterest).toLocaleString()}` },
+      ],
+      status: { type: 'success', message: 'Interest calculation complete!' }
     });
+    setResultDialogOpen(true);
   };
 
-  const calculateEligibility = () => {
-    const eligibleAmount = salary * 60;
-    toast({
-      title: t('calculators.featured.title'),
-      description: `Your estimated loan eligibility: AED ${eligibleAmount.toLocaleString()}`,
-      duration: 5000,
-    });
-  };
   return (
     <section id="calculators" className="py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Subtle Background Pattern */}
@@ -276,12 +287,13 @@ export const CalculatorsSection = () => {
           })}
         </div>
 
-        {/* Featured Calculator */}
+        {/* Featured Calculator - Now with Live Results */}
         <Card id="featured-calculator" className="p-8 md:p-10 lg:p-12 bg-card border-0 shadow-elegant overflow-hidden relative">
           {/* Background Decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
           
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 relative z-10">
+            {/* Input Section */}
             <div className="space-y-6 md:space-y-8">
               <div className="space-y-3">
                 <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground">
@@ -328,14 +340,6 @@ export const CalculatorsSection = () => {
                     <span className="text-sm text-muted-foreground font-medium">100K</span>
                   </div>
                 </div>
-
-                <Button 
-                  size="lg" 
-                  className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-500 hover:scale-[1.02] font-semibold text-base"
-                  onClick={calculateEligibility}
-                >
-                  {t('calculators.featured.checkEligibility')}
-                </Button>
                 
                 <p className="text-xs text-muted-foreground flex items-start space-x-2">
                   <span className="text-orange-500">⚠️</span>
@@ -344,29 +348,47 @@ export const CalculatorsSection = () => {
               </div>
             </div>
 
+            {/* Live Results Section */}
             <div className="flex items-center justify-center">
-              <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-primary rounded-full opacity-10 animate-pulse-soft"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src={calculatorIcon}
-                    alt="Financial Calculator"
-                    className="w-28 h-28 md:w-36 md:h-36 drop-shadow-2xl animate-float-slow"
-                  />
+              <div className="w-full max-w-sm">
+                <div className="bg-gradient-primary rounded-3xl p-6 md:p-8 text-center shadow-float">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Calculator className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  <p className="text-primary-foreground/80 text-sm mb-2 font-medium">
+                    Estimated Loan Eligibility
+                  </p>
+                  <p className="text-4xl md:text-5xl font-display font-bold text-primary-foreground mb-4 animate-pulse-soft">
+                    AED {eligibilityResult.toLocaleString()}
+                  </p>
+                  <div className="flex items-center justify-center gap-2 text-primary-foreground/70 text-sm">
+                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span>Live calculation</span>
+                  </div>
                 </div>
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-accent rounded-2xl opacity-60 animate-float rotate-12"></div>
-                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-primary rounded-xl opacity-50 animate-bounce-soft -rotate-12"></div>
+                
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-3 mt-4">
+                  <div className="bg-muted/50 rounded-xl p-4 text-center">
+                    <p className="text-xs text-muted-foreground mb-1">Multiplier</p>
+                    <p className="text-lg font-bold text-foreground">{employmentType === 'salaried' ? '60x' : '48x'}</p>
+                  </div>
+                  <div className="bg-muted/50 rounded-xl p-4 text-center">
+                    <p className="text-xs text-muted-foreground mb-1">Monthly Salary</p>
+                    <p className="text-lg font-bold text-foreground">AED {(salary/1000).toFixed(0)}K</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </Card>
 
+        {/* Calculator Dialogs */}
         {/* Car Loan Calculator Dialog */}
         <Dialog open={carLoanOpen} onOpenChange={setCarLoanOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>{t('calculators.carLoanCalc.title')}</DialogTitle>
+              <DialogTitle className="font-display">{t('calculators.carLoanCalc.title')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-6 py-4">
               <div className="space-y-2">
@@ -424,7 +446,7 @@ export const CalculatorsSection = () => {
                   step={1}
                 />
               </div>
-              <Button onClick={calculateCarLoan} className="w-full bg-gradient-primary">
+              <Button onClick={calculateCarLoan} className="w-full bg-gradient-primary hover:shadow-glow">
                 {t('calculators.carLoanCalc.calculate')}
               </Button>
             </div>
@@ -435,7 +457,7 @@ export const CalculatorsSection = () => {
         <Dialog open={dbrOpen} onOpenChange={setDbrOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>{t('calculators.dbrCalc.title')}</DialogTitle>
+              <DialogTitle className="font-display">{t('calculators.dbrCalc.title')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-6 py-4">
               <div className="space-y-2">
@@ -470,7 +492,7 @@ export const CalculatorsSection = () => {
                   onChange={(e) => setOtherDebts(Number(e.target.value))}
                 />
               </div>
-              <Button onClick={calculateDBR} className="w-full bg-gradient-primary">
+              <Button onClick={calculateDBR} className="w-full bg-gradient-primary hover:shadow-glow">
                 {t('calculators.dbrCalc.calculate')}
               </Button>
             </div>
@@ -481,7 +503,7 @@ export const CalculatorsSection = () => {
         <Dialog open={homeLoanOpen} onOpenChange={setHomeLoanOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>{t('calculators.homeLoanCalc.title')}</DialogTitle>
+              <DialogTitle className="font-display">{t('calculators.homeLoanCalc.title')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-6 py-4">
               <div className="space-y-2">
@@ -538,7 +560,7 @@ export const CalculatorsSection = () => {
                   step={1}
                 />
               </div>
-              <Button onClick={calculateHomeLoan} className="w-full bg-gradient-primary">
+              <Button onClick={calculateHomeLoan} className="w-full bg-gradient-primary hover:shadow-glow">
                 {t('calculators.homeLoanCalc.calculate')}
               </Button>
             </div>
@@ -549,7 +571,7 @@ export const CalculatorsSection = () => {
         <Dialog open={emiOpen} onOpenChange={setEmiOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>{t('calculators.emiCalc.title')}</DialogTitle>
+              <DialogTitle className="font-display">{t('calculators.emiCalc.title')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-6 py-4">
               <div className="space-y-2">
@@ -591,7 +613,7 @@ export const CalculatorsSection = () => {
                   step={6}
                 />
               </div>
-              <Button onClick={calculateEMI} className="w-full bg-gradient-primary">
+              <Button onClick={calculateEMI} className="w-full bg-gradient-primary hover:shadow-glow">
                 {t('calculators.emiCalc.calculate')}
               </Button>
             </div>
@@ -602,7 +624,7 @@ export const CalculatorsSection = () => {
         <Dialog open={interestOpen} onOpenChange={setInterestOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>{t('calculators.interestCalc.title')}</DialogTitle>
+              <DialogTitle className="font-display">{t('calculators.interestCalc.title')}</DialogTitle>
             </DialogHeader>
             <div className="space-y-6 py-4">
               <div className="space-y-2">
@@ -658,12 +680,21 @@ export const CalculatorsSection = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <Button onClick={calculateInterest} className="w-full bg-gradient-primary">
+              <Button onClick={calculateInterest} className="w-full bg-gradient-primary hover:shadow-glow">
                 {t('calculators.interestCalc.calculate')}
               </Button>
             </div>
           </DialogContent>
         </Dialog>
+
+        {/* Result Dialog */}
+        <CalculatorResultDialog 
+          open={resultDialogOpen}
+          onOpenChange={setResultDialogOpen}
+          title={resultDialogData.title}
+          results={resultDialogData.results}
+          status={resultDialogData.status}
+        />
       </div>
     </section>
   );
