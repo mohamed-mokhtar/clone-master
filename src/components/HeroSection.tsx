@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { CreditCard, DollarSign, Car, Home, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroImage from '@/assets/hero-woman.jpg';
+import heroImage from '@/assets/hero-banking.jpg';
 
 export const HeroSection = () => {
   const { t } = useLanguage();
@@ -125,7 +125,7 @@ export const HeroSection = () => {
             <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-float">
               <img
                 src={heroImage}
-                alt="Professional woman with laptop - Financial services"
+                alt="Dubai skyline with golden coins - UAE Banking and Financial Services"
                 className="w-full h-auto object-cover aspect-[4/5] md:aspect-[3/4]"
               />
               {/* Overlay Gradient */}
