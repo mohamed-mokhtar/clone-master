@@ -20,11 +20,17 @@ export const Header = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setIsMenuOpen(false);
+    // Check if we're on the home page
+    if (window.location.pathname !== '/') {
+      // Navigate to home page with hash
+      window.location.href = `/#${id}`;
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
+    setIsMenuOpen(false);
   };
 
   const handleWhatsApp = () => {
@@ -56,7 +62,7 @@ export const Header = () => {
             { label: t('header.personalLoan'), to: '/personal-loan-list' },
             { label: t('header.aboutUs'), action: () => scrollToSection('about') },
             { label: t('header.blog'), action: () => scrollToSection('blog') },
-            { label: 'Contact Us', to: '/contact' },
+            { label: t('contact.title'), to: '/contact' },
           ].map((item, index) => (
             item.to ? (
               <Link 
@@ -92,14 +98,15 @@ export const Header = () => {
             <span className="hidden lg:inline">{t('header.whatsapp')}</span>
           </Button>
           
-          <Button 
-            onClick={() => scrollToSection('calculators')}
-            variant="default" 
-            size="sm" 
-            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold"
-          >
-            {t('header.signup')}
-          </Button>
+          <Link to="/contact">
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="bg-gradient-primary hover:shadow-glow transition-all duration-300 hover:scale-105 font-semibold"
+            >
+              {t('contact.title')}
+            </Button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <Button
@@ -126,7 +133,7 @@ export const Header = () => {
             { label: t('header.personalLoan'), to: '/personal-loan-list' },
             { label: t('header.aboutUs'), action: () => scrollToSection('about') },
             { label: t('header.blog'), action: () => scrollToSection('blog') },
-            { label: 'Contact Us', to: '/contact' },
+            { label: t('contact.title'), to: '/contact' },
           ].map((item, index) => (
             item.to ? (
               <Link 
