@@ -4,16 +4,18 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle2, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle2, Send, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import appSettings from '@/settings/app-settings.json';
 import { useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function ContactUs() {
   const { t } = useLanguage();
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,11 +29,29 @@ export default function ContactUs() {
     window.open(`https://wa.me/${phoneNumber}`, '_blank');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a backend
-    setSuccessDialogOpen(true);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || null,
+          message: `${formData.subject ? `Subject: ${formData.subject}\n\n` : ''}${formData.message}`.trim()
+        });
+
+      if (error) throw error;
+      
+      setSuccessDialogOpen(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -238,10 +258,15 @@ export default function ContactUs() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button 
                       type="submit"
+                      disabled={isSubmitting}
                       className="flex-1 bg-gradient-primary hover:shadow-glow transition-all duration-300 group"
                     >
-                      <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                      Send Message
+                      {isSubmitting ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : (
+                        <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
+                      )}
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                     <Button 
                       type="button"

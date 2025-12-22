@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Finbank",
+    "name": "Fingate",
     "tagline": "Your trusted financial partner in the UAE"
   },
   "header": {
@@ -86,7 +86,7 @@
       "business": "Business",
       "monthlySalary": "Monthly Salary in AED",
       "checkEligibility": "Check Eligibility",
-      "disclaimer": "This calculator is only viable and subject to Finbank's financial assessment"
+      "disclaimer": "This calculator is only viable and subject to Fingate's financial assessment"
     },
     "carLoanCalc": {
       "title": "Car Loan Calculator",
@@ -151,7 +151,7 @@
     }
   },
   "trust": {
-    "title": "Why Choose Finbank?",
+    "title": "Why Choose Fingate?",
     "subtitle": "We are committed to providing the best financial services and innovative banking solutions",
     "features": {
       "expert": {
@@ -198,7 +198,7 @@
   },
   "footer": {
     "company": {
-      "title": "Finbank",
+      "title": "Fingate",
       "description": "Your trusted financial partner in the UAE. Connecting you with the best banking solutions tailored to your needs"
     },
     "services": {
@@ -228,7 +228,7 @@
       "about": "About Us"
     },
     "legal": {
-      "copyright": "© 2024 Finbank. All rights reserved. Licensed and regulated in the UAE",
+      "copyright": "© 2024 Fingate. All rights reserved. Licensed and regulated in the UAE",
       "regulated": "Central Bank of UAE",
       "dfsa": "DFSA Regulated"
     }

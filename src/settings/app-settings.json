@@ -2,7 +2,7 @@
   "defaultLanguage": "ar",
   "supportedLanguages": ["ar", "en"],
   "app": {
-    "name": "Finbank",
+    "name": "Fingate",
     "version": "1.0.0",
     "rtlLanguages": ["ar"],
     "features": {
@@ -14,7 +14,7 @@
   },
   "contact": {
     "phone": "+971 50 446 7508",
-    "email": "info@finbank.ae",
+    "email": "info@fingate.ae",
     "whatsapp": "+971504467508",
     "address": "Dubai, United Arab Emirates"
   },
