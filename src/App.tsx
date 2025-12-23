@@ -14,13 +14,27 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Get the base path dynamically for GitHub Pages deployment
+const getBasePath = (): string => {
+  // Check if we're running on GitHub Pages (not localhost)
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    // Extract the base path from the pathname
+    // For https://username.github.io/repo-name/, this returns "/repo-name"
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    return pathSegments.length > 0 ? `/${pathSegments[0]}` : '';
+  }
+  return '';
+};
+
+const basename = getBasePath();
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/personal-loan-list" element={<PersonalLoanList />} />
