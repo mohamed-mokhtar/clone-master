@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: 'https://mohamed-mokhtar.github.io/clone-master/',
+  base: '/clone-master/',
   server: {
     host: "::",
     port: 8080,
