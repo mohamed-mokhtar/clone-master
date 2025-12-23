@@ -39,6 +39,17 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      # Add after the Build step
+      - name: Verify build output
+        run: |
+          ls -la dist/
+          echo "Checking if index.html exists..."
+          test -f dist/index.html || exit 1
+          echo "Checking if assets exist..."
+          test -d dist/assets || exit 1
+          echo "Build verification complete ✅"
+      
+      # Add caching for node_modules (already has npm cache, but you could add more)
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
