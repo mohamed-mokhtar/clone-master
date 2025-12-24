@@ -56,11 +56,11 @@ export const HeroSection = () => {
       <div className="container mx-auto px-4 py-12 md:py-20 lg:py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-8 lg:space-y-10">
-            <div className="space-y-6 animate-fade-in-up">
+          <article className="space-y-8 lg:space-y-10">
+            <header className="space-y-6 animate-fade-in-up">
               {/* Badge */}
-              <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground/90">
-                <Sparkles className="w-4 h-4 text-primary-foreground" />
+              <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground/90" role="text" aria-label="Trusted badge">
+                <Sparkles className="w-4 h-4 text-primary-foreground" aria-hidden="true" />
                 <span>UAE's Trusted Financial Partner</span>
               </div>
               
@@ -70,7 +70,7 @@ export const HeroSection = () => {
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
                 {t('hero.subtitle')}
               </p>
-            </div>
+            </header>
 
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-200">
               <Link to="/personal-loan-list">
@@ -93,7 +93,7 @@ export const HeroSection = () => {
             </div>
 
             {/* Service Cards Grid */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl animate-fade-in-up delay-300">
+            <nav aria-label="Financial Services" className="grid grid-cols-2 gap-3 md:gap-4 max-w-2xl animate-fade-in-up delay-300">
               {financialServices.map((service, index) => {
                 const Icon = service.icon;
                 return (
@@ -102,53 +102,61 @@ export const HeroSection = () => {
                     onClick={() => scrollToSection(index === 1 ? 'calculators' : 'services')}
                     className="p-4 md:p-5 bg-white/90 backdrop-blur-sm border-0 shadow-card hover:shadow-elegant transition-all duration-500 cursor-pointer group hover:-translate-y-1"
                     style={{ animationDelay: `${(index + 3) * 100}ms` }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View ${service.title}`}
+                    onKeyDown={(e) => e.key === 'Enter' && scrollToSection(index === 1 ? 'calculators' : 'services')}
                   >
                     <div className="flex items-center space-x-3">
                       <div className="p-2 md:p-2.5 bg-gradient-primary rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-soft">
-                        <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
+                        <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" aria-hidden="true" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors duration-300">
+                        <h2 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors duration-300">
                           {service.title}
-                        </h3>
+                        </h2>
                       </div>
                     </div>
                   </Card>
                 );
               })}
-            </div>
-          </div>
+            </nav>
+          </article>
 
           {/* Right Image */}
-          <div className="relative animate-fade-in-right delay-200">
+          <aside className="relative animate-fade-in-right delay-200" aria-label="Hero illustration">
             {/* Main Image Container */}
-            <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-float">
+            <figure className="relative z-10 rounded-[2rem] overflow-hidden shadow-float">
               <img
                 src={heroImage}
-                alt="Dubai skyline with golden coins - UAE Banking and Financial Services"
+                alt="Dubai skyline representing UAE's leading financial services - Compare personal loans, credit cards and mortgages from top UAE banks including Emirates NBD, ADCB, FAB and HSBC"
                 className="w-full h-auto object-cover aspect-[4/5] md:aspect-[3/4]"
+                loading="eager"
+                fetchPriority="high"
+                width="600"
+                height="800"
               />
               {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent"></div>
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" aria-hidden="true"></div>
+            </figure>
             
             {/* Floating Decorative Elements */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-primary rounded-3xl opacity-80 animate-float shadow-glow rotate-12"></div>
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-accent rounded-2xl opacity-70 animate-float-slow shadow-elegant -rotate-6"></div>
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-primary rounded-3xl opacity-80 animate-float shadow-glow rotate-12" aria-hidden="true"></div>
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-accent rounded-2xl opacity-70 animate-float-slow shadow-elegant -rotate-6" aria-hidden="true"></div>
             
             {/* Stats Card */}
-            <div className="absolute bottom-8 -left-4 md:left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-5 shadow-elegant animate-bounce-soft z-20">
+            <div className="absolute bottom-8 -left-4 md:left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-5 shadow-elegant animate-bounce-soft z-20" role="status" aria-label="Statistics">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-primary/10 rounded-xl">
-                  <DollarSign className="w-6 h-6 text-primary" />
+                <div className="p-2 bg-primary/10 rounded-xl" aria-hidden="true">
+                  <DollarSign className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground font-medium">Loans Disbursed</p>
-                  <p className="text-xl font-bold text-foreground">AED 10B+</p>
+                  <p className="text-xl font-bold text-foreground"><span aria-label="Over 10 billion AED">AED 10B+</span></p>
                 </div>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
