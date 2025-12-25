@@ -6,13 +6,15 @@ import dubaiIslamicBank from '@/assets/banks/dubai-islamic-bank.png';
 import fab from '@/assets/banks/fab.png';
 import hsbc from '@/assets/banks/hsbc.png';
 import adib from '@/assets/banks/adib.png';
+import adcb from '@/assets/banks/adcb.png';
 
 const bankLogos = [
   { name: "Emirates NBD", logo: emiratesNBD },
   { name: "Dubai Islamic Bank", logo: dubaiIslamicBank }, 
   { name: "FAB", logo: fab },
   { name: "HSBC", logo: hsbc },
-  { name: "Abu Dhabi Islamic Bank", logo: adib }
+  { name: "Abu Dhabi Islamic Bank", logo: adib },
+  { name: "ADCB", logo: adcb }
 ];
 
 export const BankingPartners = () => {
