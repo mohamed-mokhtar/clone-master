@@ -168,7 +168,7 @@ export const Footer = () => {
         <div className="border-t border-white/15 mt-14 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-white/60 text-sm">
-              {t('footer.legal.copyright')}
+              © {new Date().getFullYear()} Fingate. All rights reserved.
             </p>
             <div className="flex items-center space-x-6 text-sm">
               <span className="text-white/60">{t('footer.legal.dfsa')}</span>

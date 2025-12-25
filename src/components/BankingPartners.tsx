@@ -3,18 +3,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 import emiratesNBD from '@/assets/banks/emirates-nbd-uae.png';
 import dubaiIslamicBank from '@/assets/banks/dubai-islamic-bank.png';
-import adcb from '@/assets/banks/adcb.png';
 import fab from '@/assets/banks/fab.png';
 import hsbc from '@/assets/banks/hsbc.png';
-import standardChartered from '@/assets/banks/standard-chartered.svg';
+import adib from '@/assets/banks/adib.png';
 
 const bankLogos = [
   { name: "Emirates NBD", logo: emiratesNBD },
   { name: "Dubai Islamic Bank", logo: dubaiIslamicBank }, 
-  { name: "ADCB", logo: adcb },
   { name: "FAB", logo: fab },
   { name: "HSBC", logo: hsbc },
-  { name: "Standard Chartered", logo: standardChartered }
+  { name: "Abu Dhabi Islamic Bank", logo: adib }
 ];
 
 export const BankingPartners = () => {
