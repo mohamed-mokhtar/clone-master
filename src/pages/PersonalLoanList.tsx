@@ -9,7 +9,22 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calculator, TrendingUp, Percent, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import appSettings from '@/settings/app-settings.json';
+
+import emiratesNBD from '@/assets/banks/emirates-nbd-uae.png';
+import dubaiIslamicBank from '@/assets/banks/dubai-islamic-bank.png';
+import adcb from '@/assets/banks/adcb.png';
+import fab from '@/assets/banks/fab.png';
+import adib from '@/assets/banks/adib.png';
+
+const bankLogos: Record<string, string> = {
+  'Emirates NBD': emiratesNBD,
+  'Dubai Islamic Bank': dubaiIslamicBank,
+  'ADCB': adcb,
+  'FAB': fab,
+  'ADIB': adib,
+};
 
 export default function PersonalLoanList() {
   const { t, isRTL } = useLanguage();
@@ -20,7 +35,7 @@ export default function PersonalLoanList() {
   const [employmentType, setEmploymentType] = useState('salaried');
   const [interestRate, setInterestRate] = useState(8);
 
-  const banks = ['FAB', 'HSBC', 'ADCB', 'RAKBANK', 'Sharjah Islamic Bank'];
+  const banks = ['FAB', 'ADIB', 'ADCB', 'RAKBANK', 'Sharjah Islamic Bank'];
   const [selectedBanks, setSelectedBanks] = useState<string[]>([]);
   const [islamicFinance, setIslamicFinance] = useState(false);
   const [salaryTransfer, setSalaryTransfer] = useState('any');
@@ -336,10 +351,18 @@ export default function PersonalLoanList() {
             </h2>
           </div>
           <div className="flex justify-center items-center space-x-8 overflow-x-auto px-4">
-            {['Emirates NBD', 'Dubai Islamic Bank', 'ADCB', 'FAB', 'HSBC'].map((bank, index) => (
-              <div key={index} className="bg-white/10 rounded-lg p-4 min-w-[120px] text-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-2">
-                  <span className="text-xs font-semibold text-primary">{bank}</span>
+            {['Emirates NBD', 'Dubai Islamic Bank', 'ADCB', 'FAB', 'ADIB'].map((bank, index) => (
+              <div key={index} className="bg-white/10 rounded-lg p-4 min-w-[120px] text-center hover:bg-white/20 transition-all duration-300 cursor-pointer hover:scale-105">
+                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mx-auto mb-2 p-2">
+                  {bankLogos[bank] ? (
+                    <img 
+                      src={bankLogos[bank]} 
+                      alt={`${bank} logo`}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-xs font-semibold text-primary">{bank}</span>
+                  )}
                 </div>
               </div>
             ))}
@@ -347,6 +370,7 @@ export default function PersonalLoanList() {
         </section>
       </div>
 
+      <FloatingWhatsApp />
       <Footer />
     </div>
   );

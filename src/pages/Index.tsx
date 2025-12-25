@@ -8,6 +8,8 @@ import { Footer } from '@/components/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import { SEOHead } from '@/components/SEOHead';
 import { StructuredData } from '@/components/StructuredData';
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
+import { ScrollAnimation } from '@/components/ScrollAnimations';
 
 const homepageFAQs = [
   {
@@ -46,14 +48,23 @@ const Index = () => {
       <Header />
       <main role="main" itemScope itemType="https://schema.org/WebPage">
         <HeroSection />
-        <section id="services" aria-label="Our Services">
-          <TrustSection />
+        <ScrollAnimation animation="fade-up">
+          <section id="services" aria-label="Our Services">
+            <TrustSection />
+          </section>
+        </ScrollAnimation>
+        <ScrollAnimation animation="scale" delay={100}>
           <BankingPartners />
-        </section>
-        <CalculatorsSection />
-        <BlogSection />
+        </ScrollAnimation>
+        <ScrollAnimation animation="fade-up" delay={150}>
+          <CalculatorsSection />
+        </ScrollAnimation>
+        <ScrollAnimation animation="fade-up" delay={200}>
+          <BlogSection />
+        </ScrollAnimation>
       </main>
       <Footer />
+      <FloatingWhatsApp />
       <Toaster />
     </div>
   );
