@@ -68,7 +68,7 @@ export const CalculatorsSection = () => {
 
   // Live calculation for featured calculator
   const eligibilityResult = useMemo(() => {
-    const multiplier = employmentType === 'salaried' ? 60 : 48;
+    const multiplier = employmentType === 'salaried' ? 20 : 16;
     return salary * multiplier;
   }, [salary, employmentType]);
 
@@ -371,7 +371,7 @@ export const CalculatorsSection = () => {
                 <div className="grid grid-cols-2 gap-3 mt-4">
                   <div className="bg-muted/50 rounded-xl p-4 text-center">
                     <p className="text-xs text-muted-foreground mb-1">Multiplier</p>
-                    <p className="text-lg font-bold text-foreground">{employmentType === 'salaried' ? '60x' : '48x'}</p>
+                    <p className="text-lg font-bold text-foreground">{employmentType === 'salaried' ? '20x' : '16x'}</p>
                   </div>
                   <div className="bg-muted/50 rounded-xl p-4 text-center">
                     <p className="text-xs text-muted-foreground mb-1">Monthly Salary</p>

@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calculator, TrendingUp, Percent, Calendar, Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
+import appSettings from '@/settings/app-settings.json';
 
 export default function PersonalLoanList() {
   const { t, isRTL } = useLanguage();
@@ -313,7 +314,13 @@ export default function PersonalLoanList() {
                 <p className="text-muted-foreground">
                   {t('loanList.noResults.assistance')}
                 </p>
-                <Button className="bg-gradient-primary hover:shadow-glow">
+                <Button 
+                  className="bg-gradient-primary hover:shadow-glow"
+                  onClick={() => {
+                    const phone = appSettings.contact.whatsapp.replace(/\s+/g, '');
+                    window.open(`https://wa.me/${phone}`, '_blank');
+                  }}
+                >
                   {t('loanList.noResults.consultExpert')}
                 </Button>
               </div>
