@@ -170,10 +170,9 @@ export const Footer = () => {
             <p className="text-white/60 text-sm">
               © {new Date().getFullYear()} Fingate. All rights reserved.
             </p>
-            <div className="flex items-center space-x-6 text-sm">
-              <span className="text-white/60">{t('footer.legal.dfsa')}</span>
-              <span className="text-white/60">{t('footer.legal.regulated')}</span>
-            </div>
+            <p className="text-white/60 text-sm text-center md:text-right">
+              {t('footer.legal.selfManaged')}
+            </p>
           </div>
         </div>
       </div>
