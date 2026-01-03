@@ -48,14 +48,14 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4 h-18 md:h-20 flex items-center justify-between py-3">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 group">
+        <Link to="/" className="flex items-center gap-2 group">
           <div className="text-2xl md:text-3xl font-display font-bold bg-gradient-primary bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-105">
             {t('app.name')}
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {[
             { label: t('header.services'), action: () => scrollToSection('services') },
             { label: t('header.calculators'), action: () => scrollToSection('calculators') },
@@ -85,14 +85,14 @@ export const Header = () => {
         </nav>
 
         {/* Right Side Actions */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center gap-3">
           <LanguageSwitcher />
           
           <Button 
             onClick={handleWhatsApp}
             variant="outline" 
             size="sm" 
-            className="hidden md:flex items-center space-x-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-glow"
+            className="hidden md:flex items-center gap-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-glow"
           >
             <MessageCircle className="w-4 h-4" />
             <span className="hidden lg:inline">{t('header.whatsapp')}</span>
@@ -158,7 +158,7 @@ export const Header = () => {
             onClick={handleWhatsApp}
             variant="outline" 
             size="lg" 
-            className="w-full flex items-center justify-center space-x-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground mt-4"
+            className="w-full flex items-center justify-center gap-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground mt-4"
           >
             <MessageCircle className="w-5 h-5" />
             <span>{t('header.whatsappSupport')}</span>
