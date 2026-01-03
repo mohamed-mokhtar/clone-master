@@ -59,7 +59,7 @@ export const HeroSection = () => {
           <article className="space-y-8 lg:space-y-10">
             <header className="space-y-6 animate-fade-in-up">
               {/* Badge */}
-              <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground/90" role="text" aria-label="Trusted badge">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium text-foreground/90" role="text" aria-label="Trusted badge">
                 <Sparkles className="w-4 h-4 text-primary-foreground" aria-hidden="true" />
                 <span>UAE's Trusted Financial Partner</span>
               </div>
@@ -107,7 +107,7 @@ export const HeroSection = () => {
                     aria-label={`View ${service.title}`}
                     onKeyDown={(e) => e.key === 'Enter' && scrollToSection(index === 1 ? 'calculators' : 'services')}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-3">
                       <div className="p-2 md:p-2.5 bg-gradient-primary rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-soft">
                         <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" aria-hidden="true" />
                       </div>
@@ -146,7 +146,7 @@ export const HeroSection = () => {
             
             {/* Stats Card */}
             <div className="absolute bottom-8 -left-4 md:left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-5 shadow-elegant animate-bounce-soft z-20" role="status" aria-label="Statistics">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <div className="p-2 bg-primary/10 rounded-xl" aria-hidden="true">
                   <DollarSign className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
