@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import appSettings from '@/settings/app-settings.json';
 
 export const Header = () => {
@@ -86,6 +87,7 @@ export const Header = () => {
 
         {/* Right Side Actions */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <LanguageSwitcher />
           
           <Button 
