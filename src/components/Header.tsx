@@ -110,32 +110,31 @@ export const Header = () => {
               </Link>
 
               {/* Desktop Navigation */}
-              <nav className="hidden lg:flex items-center gap-1">
+              <nav className="hidden xl:flex items-center gap-0.5">
                 {navItems.map((item, index) => (
                   item.to ? (
                     <Link 
                       key={index}
                       to={item.to} 
-                      className="relative px-4 py-2 text-foreground/70 hover:text-foreground font-medium transition-all duration-300 rounded-xl group"
+                      className="relative px-3 py-2 text-foreground/70 hover:text-foreground text-sm font-medium transition-all duration-300 rounded-lg group whitespace-nowrap"
                     >
                       <span className="relative z-10">{item.label}</span>
                       <motion.div 
-                        className="absolute inset-0 bg-primary/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        layoutId="nav-hover"
+                        className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       />
-                      <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                      <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </Link>
                   ) : (
                     <button 
                       key={index}
                       onClick={item.action} 
-                      className="relative px-4 py-2 text-foreground/70 hover:text-foreground font-medium transition-all duration-300 rounded-xl group"
+                      className="relative px-3 py-2 text-foreground/70 hover:text-foreground text-sm font-medium transition-all duration-300 rounded-lg group whitespace-nowrap"
                     >
                       <span className="relative z-10">{item.label}</span>
                       <motion.div 
-                        className="absolute inset-0 bg-primary/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       />
-                      <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                      <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
                     </button>
                   )
                 ))}
@@ -180,7 +179,7 @@ export const Header = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="lg:hidden hover:bg-primary/10 rounded-xl"
+                  className="xl:hidden hover:bg-primary/10 rounded-xl"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   <AnimatePresence mode="wait">
@@ -216,7 +215,7 @@ export const Header = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              className="lg:hidden absolute top-full left-0 right-0 mt-2 mx-4"
+              className="xl:hidden absolute top-full left-0 right-0 mt-2 mx-4"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
