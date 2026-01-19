@@ -14,10 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
-        arabic: ['Cairo', 'Segoe UI', 'Tahoma', 'sans-serif'],
+        sans: ['Outfit', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        serif: ['DM Serif Display', 'Playfair Display', 'Georgia', 'serif'],
+        display: ['DM Serif Display', 'Playfair Display', 'Georgia', 'serif'],
+        arabic: ['Tajawal', 'Segoe UI', 'Tahoma', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
