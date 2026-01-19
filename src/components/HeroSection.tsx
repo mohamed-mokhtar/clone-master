@@ -3,7 +3,10 @@ import { Button } from '@/components/ui/button';
 import { CreditCard, DollarSign, Car, Home, ArrowRight, Sparkles, TrendingUp, Shield, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroImage from '@/assets/hero-fintech.jpg';
+import { Hero3DMockup } from '@/components/Hero3DMockup';
+import { motion } from 'framer-motion';
+import heroLight from '@/assets/hero-light.jpg';
+import heroDark from '@/assets/hero-dark.jpg';
 
 export const HeroSection = () => {
   const { t } = useLanguage();
@@ -50,71 +53,106 @@ export const HeroSection = () => {
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-background">
-      {/* Hero Background Image with Overlay */}
+      {/* Theme-aware Hero Background */}
       <div className="absolute inset-0">
+        {/* Light mode image */}
         <img 
-          src={heroImage} 
+          src={heroLight} 
           alt="" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover dark:hidden"
           loading="eager"
           fetchPriority="high"
         />
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70 dark:from-background dark:via-background/90 dark:to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+        {/* Dark mode image */}
+        <img 
+          src={heroDark} 
+          alt="" 
+          className="w-full h-full object-cover hidden dark:block"
+          loading="eager"
+          fetchPriority="high"
+        />
+        {/* Light Mode Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/50 dark:hidden"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30 dark:hidden"></div>
+        {/* Dark Mode Gradient Overlays */}
+        <div className="absolute inset-0 hidden dark:block bg-gradient-to-r from-background via-background/85 to-transparent"></div>
+        <div className="absolute inset-0 hidden dark:block bg-gradient-to-t from-background via-transparent to-background/40"></div>
       </div>
 
       {/* Animated Geometric Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating orbs */}
-        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/20 rounded-full blur-[100px] animate-pulse-soft"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-48 h-48 bg-secondary/30 rounded-full blur-[80px] animate-float"></div>
-        <div className="absolute top-1/2 right-1/6 w-32 h-32 bg-accent/25 rounded-full blur-[60px] animate-float-slow"></div>
+        <motion.div 
+          className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/10 dark:bg-primary/20 rounded-full blur-[100px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute bottom-1/3 right-1/3 w-48 h-48 bg-secondary/20 dark:bg-secondary/30 rounded-full blur-[80px]"
+          animate={{ y: [-20, 20, -20] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute top-1/2 right-1/6 w-32 h-32 bg-accent/15 dark:bg-accent/25 rounded-full blur-[60px]"
+          animate={{ x: [-10, 10, -10] }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
         
         {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" style={{
+        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.04]" style={{
           backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
           backgroundSize: '60px 60px'
         }}></div>
-
-        {/* Animated lines */}
-        <svg className="absolute right-0 top-0 h-full w-1/2 opacity-10 dark:opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0,50 Q25,30 50,50 T100,50" stroke="url(#lineGradient)" strokeWidth="0.2" fill="none" className="animate-pulse-soft">
-            <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0,50 Q25,30 50,50 T100,50;M0,50 Q25,70 50,50 T100,50;M0,50 Q25,30 50,50 T100,50" />
-          </path>
-          <defs>
-            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--primary))" />
-              <stop offset="50%" stopColor="hsl(var(--secondary))" />
-              <stop offset="100%" stopColor="hsl(var(--primary))" />
-            </linearGradient>
-          </defs>
-        </svg>
       </div>
 
-      <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 relative z-10">
-        <div className="max-w-4xl">
+      <div className="container mx-auto px-4 py-16 md:py-24 lg:py-28 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Content */}
-          <article className="space-y-8 lg:space-y-10">
-            <header className="space-y-6 animate-fade-in-up">
+          <motion.article 
+            className="space-y-8 lg:space-y-10"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <header className="space-y-6">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-primary/10 dark:bg-primary/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-sm font-semibold text-primary border border-primary/20" role="text" aria-label="Trusted badge">
+              <motion.div 
+                className="inline-flex items-center gap-2 bg-primary/10 dark:bg-primary/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-sm font-semibold text-primary border border-primary/20"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
                 <span>UAE's Trusted Financial Partner</span>
-              </div>
+              </motion.div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-foreground leading-[1.05] tracking-tight">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-foreground leading-[1.05] tracking-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
                 <span className="block">{t('hero.title')}</span>
                 <span className="block mt-2 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
                   Smarter Way
                 </span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              </motion.h1>
+              <motion.p 
+                className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
                 {t('hero.subtitle')}
-              </p>
+              </motion.p>
             </header>
 
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-200">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
               <Link to="/personal-loan-list">
                 <Button 
                   size="lg" 
@@ -132,14 +170,24 @@ export const HeroSection = () => {
               >
                 {t('hero.learnMore')}
               </Button>
-            </div>
+            </motion.div>
 
             {/* Stats Row */}
-            <div className="flex flex-wrap gap-6 md:gap-10 pt-4 animate-fade-in-up delay-300">
+            <motion.div 
+              className="flex flex-wrap gap-6 md:gap-10 pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={index} className="flex items-center gap-3 group">
+                  <motion.div 
+                    key={index} 
+                    className="flex items-center gap-3 group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
                     <div className="p-2.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors duration-300">
                       <Icon className="w-5 h-5 text-primary" />
                     </div>
@@ -147,40 +195,57 @@ export const HeroSection = () => {
                       <p className="text-xl md:text-2xl font-bold text-foreground">{stat.value}</p>
                       <p className="text-xs text-muted-foreground">{stat.label}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
 
             {/* Service Cards Grid */}
-            <nav aria-label="Financial Services" className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 pt-6 animate-fade-in-up delay-400">
+            <motion.nav 
+              aria-label="Financial Services" 
+              className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 pt-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
               {financialServices.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <Card
+                  <motion.div
                     key={index}
-                    onClick={() => scrollToSection(index === 1 ? 'calculators' : 'services')}
-                    className="p-4 md:p-5 bg-card/80 dark:bg-card/60 backdrop-blur-md border border-border/50 hover:border-primary/30 shadow-soft hover:shadow-elegant transition-all duration-500 cursor-pointer group hover:-translate-y-1 rounded-xl"
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`View ${service.title}`}
-                    onKeyDown={(e) => e.key === 'Enter' && scrollToSection(index === 1 ? 'calculators' : 'services')}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2.5 bg-gradient-to-br ${service.gradient} rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-soft`}>
-                        <Icon className="w-5 h-5 text-white" aria-hidden="true" />
+                    <Card
+                      onClick={() => scrollToSection(index === 1 ? 'calculators' : 'services')}
+                      className="p-4 md:p-5 bg-card/80 dark:bg-card/60 backdrop-blur-md border border-border/50 hover:border-primary/30 shadow-soft hover:shadow-elegant transition-all duration-500 cursor-pointer group rounded-xl"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`View ${service.title}`}
+                      onKeyDown={(e) => e.key === 'Enter' && scrollToSection(index === 1 ? 'calculators' : 'services')}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2.5 bg-gradient-to-br ${service.gradient} rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-soft`}>
+                          <Icon className="w-5 h-5 text-white" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <h2 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors duration-300">
+                            {service.title}
+                          </h2>
+                        </div>
                       </div>
-                      <div>
-                        <h2 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors duration-300">
-                          {service.title}
-                        </h2>
-                      </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 );
               })}
-            </nav>
-          </article>
+            </motion.nav>
+          </motion.article>
+
+          {/* 3D Mockup */}
+          <div className="hidden lg:flex justify-center items-center">
+            <Hero3DMockup />
+          </div>
         </div>
       </div>
 
