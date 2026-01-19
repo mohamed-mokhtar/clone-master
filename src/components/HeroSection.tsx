@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Hero3DMockup } from '@/components/Hero3DMockup';
 import { motion } from 'framer-motion';
+import { LetterReveal, GradientLetterReveal } from '@/components/LetterReveal';
 import heroLight from '@/assets/hero-light.jpg';
 import heroDark from '@/assets/hero-dark.jpg';
 
@@ -126,17 +127,21 @@ export const HeroSection = () => {
                 <span>UAE's Trusted Financial Partner</span>
               </motion.div>
               
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-foreground leading-[1.05] tracking-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
+              <h1 
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display text-foreground leading-[1.1] tracking-tight"
               >
-                <span className="block">{t('hero.title')}</span>
-                <span className="block mt-2 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient-shift" style={{ backgroundSize: '200% 200%' }}>
-                  Smarter Way
+                <span className="block">
+                  <LetterReveal text={t('hero.title')} delay={0.3} staggerDelay={0.025} />
                 </span>
-              </motion.h1>
+                <span className="block mt-2">
+                  <GradientLetterReveal 
+                    text="Smarter Way" 
+                    delay={0.8} 
+                    staggerDelay={0.05}
+                    gradientColors="from-primary via-secondary to-accent"
+                  />
+                </span>
+              </h1>
               <motion.p 
                 className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
