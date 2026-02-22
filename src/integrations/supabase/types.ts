@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      applications: {
+        Row: {
+          created_at: string
+          date_of_birth: string | null
+          eid_back_url: string | null
+          eid_front_url: string | null
+          email: string
+          employer_name: string | null
+          employment_type: string | null
+          finance_type: string
+          full_name: string
+          id: string
+          length_of_service: string | null
+          mobile: string
+          monthly_salary: number | null
+          nationality: string | null
+          product_preferences: Json | null
+          product_type: string
+          promo_code: string | null
+          residency_status: string | null
+          salary_transfer_bank: string | null
+          status: string
+          whatsapp_registered: string | null
+        }
+        Insert: {
+          created_at?: string
+          date_of_birth?: string | null
+          eid_back_url?: string | null
+          eid_front_url?: string | null
+          email: string
+          employer_name?: string | null
+          employment_type?: string | null
+          finance_type?: string
+          full_name: string
+          id?: string
+          length_of_service?: string | null
+          mobile: string
+          monthly_salary?: number | null
+          nationality?: string | null
+          product_preferences?: Json | null
+          product_type: string
+          promo_code?: string | null
+          residency_status?: string | null
+          salary_transfer_bank?: string | null
+          status?: string
+          whatsapp_registered?: string | null
+        }
+        Update: {
+          created_at?: string
+          date_of_birth?: string | null
+          eid_back_url?: string | null
+          eid_front_url?: string | null
+          email?: string
+          employer_name?: string | null
+          employment_type?: string | null
+          finance_type?: string
+          full_name?: string
+          id?: string
+          length_of_service?: string | null
+          mobile?: string
+          monthly_salary?: number | null
+          nationality?: string | null
+          product_preferences?: Json | null
+          product_type?: string
+          promo_code?: string | null
+          residency_status?: string | null
+          salary_transfer_bank?: string | null
+          status?: string
+          whatsapp_registered?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           created_at: string

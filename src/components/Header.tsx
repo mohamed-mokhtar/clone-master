@@ -48,6 +48,7 @@ export const Header = () => {
     { label: t('header.services'), action: () => scrollToSection('services') },
     { label: t('header.calculators'), action: () => scrollToSection('calculators') },
     { label: t('header.personalLoan'), to: '/personal-loan-list' },
+    { label: t('header.apply'), to: '/apply' },
     { label: t('header.aboutUs'), action: () => scrollToSection('about') },
     { label: t('header.blog'), action: () => scrollToSection('blog') },
     { label: t('contact.title'), to: '/contact' },
