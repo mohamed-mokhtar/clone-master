@@ -10,6 +10,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import Index from "./pages/Index";
 import PersonalLoanList from "./pages/PersonalLoanList";
 import ContactUs from "./pages/ContactUs";
+import Apply from "./pages/Apply";
 import CreditScoreArticle from "./pages/articles/CreditScoreArticle";
 import FirstHomeLoanArticle from "./pages/articles/FirstHomeLoanArticle";
 import InvestmentTipsArticle from "./pages/articles/InvestmentTipsArticle";
@@ -67,6 +68,7 @@ const AnimatedRoutes = () => {
       >
         <Routes location={location}>
           <Route path="/" element={<Index />} />
+          <Route path="/apply" element={<Apply />} />
           <Route path="/personal-loan-list" element={<PersonalLoanList />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/articles/credit-score" element={<CreditScoreArticle />} />

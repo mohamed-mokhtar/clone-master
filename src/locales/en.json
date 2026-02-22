@@ -13,7 +13,8 @@
     "signup": "Sign up",
     "language": "Language",
     "personalLoan": "Personal Loans",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "apply": "Apply Now"
   },
   "hero": {
     "title": "Smart Banking Solutions for Your Financial Future",
@@ -289,5 +290,126 @@
     "location": "Location",
     "whatsapp": "WhatsApp",
     "businessHours": "Business Hours"
+  },
+  "apply": {
+    "exit": "Exit",
+    "products": {
+      "creditCard": "Credit Card",
+      "personalLoan": "Personal Loan",
+      "homeFinance": "Home Finance",
+      "autoLoan": "Auto Loan"
+    },
+    "financeTypes": {
+      "all": "All",
+      "conventional": "Conventional",
+      "islamic": "Islamic"
+    },
+    "errors": {
+      "required": "This field is required",
+      "invalidPhone": "Please enter a valid UAE mobile number",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidSalary": "Please enter a valid salary amount",
+      "selectBenefits": "Please select at least 3 benefits",
+      "acceptTerms": "You must accept the terms and conditions",
+      "submitFailed": "Submission failed. Please try again."
+    },
+    "step1": {
+      "title": "LET'S GET THE BEST DEAL FOR YOU",
+      "subtitle": "Apply in 5 minutes — Select your product to get started"
+    },
+    "step2": {
+      "title": "LET'S GET STARTED WITH YOUR {product} JOURNEY IN THE UAE",
+      "subtitle": "We'll use this to keep you updated on your application",
+      "mobile": "Mobile Number",
+      "whatsapp": "Is this number registered on WhatsApp?",
+      "whatsappOptions": {
+        "yes": "Yes, it's on WhatsApp",
+        "no": "No, it's not on WhatsApp",
+        "no_whatsapp": "I don't have WhatsApp"
+      }
+    },
+    "step3": {
+      "title": "Personal Details",
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "nationality": "Nationality",
+      "selectNationality": "Select nationality",
+      "residency": "UAE Residency Status",
+      "resident": "Resident",
+      "non_resident": "Non-Resident",
+      "dob": "Date of Birth"
+    },
+    "step4": {
+      "title": "Employment & Financial Details",
+      "employmentType": "Employment Type",
+      "salaried": "Salaried",
+      "self_employed": "Self-Employed",
+      "business_owner": "Business Owner",
+      "salary": "Monthly Salary",
+      "employer": "Employer Name",
+      "serviceLength": "Length of Service",
+      "selectLength": "Select length of service",
+      "salaryBank": "Salary Transfer Bank",
+      "selectBank": "Select bank"
+    },
+    "step5": {
+      "months": "months",
+      "general": {
+        "title": "Product Preferences"
+      },
+      "creditCard": {
+        "title": "What benefits matter most to you?",
+        "subtitle": "Select at least 3 benefits that interest you",
+        "selected": "selected",
+        "categories": {
+          "entertainment": "Entertainment",
+          "lifestyle": "Lifestyle",
+          "financial": "Financial",
+          "extras": "Extra Benefits"
+        }
+      },
+      "personalLoan": {
+        "amount": "Desired Loan Amount",
+        "tenure": "Preferred Tenure"
+      },
+      "homeFinance": {
+        "propertyValue": "Property Value",
+        "downPayment": "Down Payment",
+        "propertyType": "Property Type",
+        "ready": "Ready Property",
+        "off_plan": "Off-Plan"
+      },
+      "autoLoan": {
+        "vehiclePrice": "Vehicle Price",
+        "downPayment": "Down Payment",
+        "condition": "Vehicle Condition",
+        "new": "Brand New",
+        "used": "Pre-Owned"
+      }
+    },
+    "step6": {
+      "title": "Do you have a Promo Code?",
+      "subtitle": "If you were assisted by a salesperson, please check with them for the promo code.",
+      "placeholder": "Enter promo code",
+      "hint": "This is optional — you can skip this step",
+      "skip": "I don't have a code"
+    },
+    "step7": {
+      "title": "Upload & Review",
+      "subtitle": "Upload your Emirates ID and review your application",
+      "eidTitle": "Emirates ID",
+      "eidFront": "Emirates ID - Front",
+      "eidBack": "Emirates ID - Back",
+      "uploadHint": "Click to upload (image or PDF)",
+      "reviewTitle": "Application Summary",
+      "product": "Product",
+      "finance": "Finance Type",
+      "termsText": "I agree to the terms and conditions and consent to the processing of my personal data for this application."
+    },
+    "success": {
+      "title": "Application Submitted!",
+      "message": "Thank you for your application. Our team will review your details and get back to you shortly.",
+      "backHome": "Back to Home"
+    }
   }
 }
