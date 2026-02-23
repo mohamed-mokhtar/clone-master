@@ -18,11 +18,15 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Get the base path dynamically for GitHub Pages deployment
+// Get the base path for GitHub Pages deployment only
 const getBasePath = (): string => {
-  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    return pathSegments.length > 0 ? `/${pathSegments[0]}` : '';
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    // Only apply basename for GitHub Pages (*.github.io)
+    if (hostname.endsWith('.github.io')) {
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      return pathSegments.length > 0 ? `/${pathSegments[0]}` : '';
+    }
   }
   return '';
 };

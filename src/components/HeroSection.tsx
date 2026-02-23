@@ -158,23 +158,24 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Link to="/personal-loan-list">
+              <Link to="/apply">
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-primary to-primary-glow hover:from-primary-dark hover:to-primary text-primary-foreground hover:shadow-glow transition-all duration-500 w-full sm:w-auto text-base font-semibold px-8 py-6 group rounded-xl"
                 >
-                  {t('hero.getStarted')}
+                  {t('hero.applyNow') || 'Apply Now'}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </Link>
-              <Button 
-                onClick={() => scrollToSection('calculators')}
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm hover:bg-primary/10 hover:border-primary text-foreground font-semibold px-8 py-6 rounded-xl transition-all duration-300"
-              >
-                {t('hero.learnMore')}
-              </Button>
+              <Link to="/personal-loan-list">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-2 border-primary/30 bg-background/50 backdrop-blur-sm hover:bg-primary/10 hover:border-primary text-foreground font-semibold px-8 py-6 rounded-xl transition-all duration-300 w-full sm:w-auto"
+                >
+                  {t('hero.getStarted')}
+                </Button>
+              </Link>
             </motion.div>
 
             {/* Stats Row */}
@@ -222,25 +223,25 @@ export const HeroSection = () => {
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <Card
-                      onClick={() => scrollToSection(index === 1 ? 'calculators' : 'services')}
-                      className="p-4 md:p-5 bg-card/80 dark:bg-card/60 backdrop-blur-md border border-border/50 hover:border-primary/30 shadow-soft hover:shadow-elegant transition-all duration-500 cursor-pointer group rounded-xl"
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`View ${service.title}`}
-                      onKeyDown={(e) => e.key === 'Enter' && scrollToSection(index === 1 ? 'calculators' : 'services')}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`p-2.5 bg-gradient-to-br ${service.gradient} rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-soft`}>
-                          <Icon className="w-5 h-5 text-white" aria-hidden="true" />
+                    <Link to="/apply" className="block">
+                      <Card
+                        className="p-4 md:p-5 bg-card/80 dark:bg-card/60 backdrop-blur-md border border-border/50 hover:border-primary/30 shadow-soft hover:shadow-elegant transition-all duration-500 cursor-pointer group rounded-xl"
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Apply for ${service.title}`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`p-2.5 bg-gradient-to-br ${service.gradient} rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-soft`}>
+                            <Icon className="w-5 h-5 text-white" aria-hidden="true" />
+                          </div>
+                          <div>
+                            <h2 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors duration-300">
+                              {service.title}
+                            </h2>
+                          </div>
                         </div>
-                        <div>
-                          <h2 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors duration-300">
-                            {service.title}
-                          </h2>
-                        </div>
-                      </div>
-                    </Card>
+                      </Card>
+                    </Link>
                   </motion.div>
                 );
               })}
