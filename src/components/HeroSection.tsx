@@ -6,8 +6,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Hero3DMockup } from '@/components/Hero3DMockup';
 import { motion } from 'framer-motion';
 import { LetterReveal, GradientLetterReveal } from '@/components/LetterReveal';
-import heroLight from '@/assets/hero-light.jpg';
-import heroDark from '@/assets/hero-dark.jpg';
+const heroLight = '/images/hero-light.jpg';
+const heroDark = '/images/hero-dark.jpg';
 
 export const HeroSection = () => {
   const { t } = useLanguage();
