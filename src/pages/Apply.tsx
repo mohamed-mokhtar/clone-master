@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
+import { checkRateLimit, recordSubmission } from '@/utils/rateLimit';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -171,6 +173,12 @@ const Apply = () => {
 
   const handleSubmit = async () => {
     if (!validateStep()) return;
+    
+    if (!checkRateLimit('application', 60)) {
+      toast.error('Please wait before submitting another application. Try again later.');
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -218,6 +226,7 @@ const Apply = () => {
       });
 
       if (error) throw error;
+      recordSubmission('application');
       setIsSuccess(true);
     } catch (err) {
       console.error('Submission error:', err);

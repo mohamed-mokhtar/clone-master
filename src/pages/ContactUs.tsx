@@ -11,6 +11,8 @@ import { Footer } from '@/components/Footer';
 import appSettings from '@/settings/app-settings.json';
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { checkRateLimit, recordSubmission } from '@/utils/rateLimit';
+import { toast } from 'sonner';
 
 export default function ContactUs() {
   const { t } = useLanguage();
@@ -31,6 +33,12 @@ export default function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!checkRateLimit('contact', 60)) {
+      toast.error('Please wait before submitting another message. Try again later.');
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -45,6 +53,7 @@ export default function ContactUs() {
 
       if (error) throw error;
       
+      recordSubmission('contact');
       setSuccessDialogOpen(true);
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch (error) {
